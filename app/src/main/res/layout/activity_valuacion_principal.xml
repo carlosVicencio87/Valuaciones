@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ValuacionPrincipal"
+    android:background="@drawable/fondo">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="50dp">
+        <Spinner
+            android:layout_width="250dp"
+            android:id="@+id/Tipo_Uso"
+            android:layout_height="70dp"
+            android:background="@color/negro"
+            android:text="@string/texto1"
+            android:textSize="16dp"
+            android:layout_margin="30dp"
+            android:textColor="@color/blanco"
+            android:gravity="center"
+
+            />
+
+
+        <Button
+            android:layout_width="250dp"
+            android:id="@+id/calTierra"
+            android:layout_height="70dp"
+            android:background="@color/negro"
+            android:text="@string/texto4"
+            android:textSize="14dp"
+            android:layout_margin="30dp"
+            android:textColor="@color/blanco"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            />
+
+        <Button
+            android:layout_width="250dp"
+            android:id="@+id/calConstruccion"
+            android:layout_height="70dp"
+            android:background="@color/negro"
+            android:text="@string/texto5"
+            android:textSize="14dp"
+            android:layout_margin="30dp"
+            android:textColor="@color/blanco"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            />
+
+
+        <Button
+            android:layout_width="250dp"
+            android:id="@+id/calInstalacion"
+            android:layout_height="70dp"
+            android:background="@color/negro"
+            android:text="@string/texto6"
+            android:textSize="14dp"
+            android:layout_margin="30dp"
+            android:textColor="@color/blanco"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            />
+        <Button
+            android:layout_width="180dp"
+            android:id="@+id/sigCalculo"
+            android:layout_height="70dp"
+            android:background="@color/negro"
+            android:text="@string/texto7"
+            android:textSize="16dp"
+            android:layout_margin="15dp"
+            android:textColor="@color/blanco"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"
+            />
+    </LinearLayout>
+
+</ScrollView>
+
+
+</LinearLayout>

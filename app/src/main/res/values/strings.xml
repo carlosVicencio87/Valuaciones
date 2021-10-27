@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Valuaciones</string>
+    <string name="texto1">Nueva Valuacion</string>
+    <string name="texto2">Historial de Valuaciones</string>
+    <string name="texto3">Cerrar Sesion</string>
+    <string name="texto4">Calcular Valor de la tierra</string>
+    <string name="texto5">Calcular Valor de la Construcion</string>
+    <string name="texto6">Calcular Valor de las instalaciones</string>
+    <string name="texto7">Siguiente</string>
+    <string name="texto8">Valor de la tierra</string>
+    <string name="texto9">Area</string>
+    <string name="texto10">valor total del terreno</string>
+    <string name="texto11">Area de construccion</string>
+    <string name="texto12">Tipo de Estructura</string>
+    <string name="texto13">Materiales de Muros</string>
+    <string name="texto14">Entrepisos</string>
+    <string name="texto15">Cubiertas</string>
+    <string name="title_activity_mapa">Map</string>
+
+
+</resources>

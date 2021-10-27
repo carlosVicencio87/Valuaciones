@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Principal"
+    android:background="@drawable/fondo">
+
+
+
+    <Button
+        android:layout_width="250dp"
+        android:id="@+id/NuevaValuacion"
+        android:layout_height="70dp"
+        android:background="@color/negro"
+        android:text="@string/texto1"
+        android:textSize="16dp"
+        android:layout_margin="30dp"
+        android:textColor="@color/blanco"
+        android:gravity="center"
+
+        />
+    <Button
+        android:layout_width="250dp"
+        android:id="@+id/HistorialVal"
+        android:layout_height="70dp"
+        android:background="@color/negro"
+        android:text="@string/texto2"
+        android:textSize="16dp"
+        android:layout_margin="30dp"
+        android:textColor="@color/blanco"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        />
+
+    <Button
+        android:layout_width="180dp"
+        android:id="@+id/cerrarsesion"
+        android:layout_height="70dp"
+        android:background="@color/negro"
+        android:text="@string/texto3"
+        android:textSize="16dp"
+        android:layout_margin="15dp"
+        android:textColor="@color/blanco"
+        android:gravity="center"
+        android:layout_marginBottom="5dp"
+        />
+
+
+
+
+</LinearLayout>
