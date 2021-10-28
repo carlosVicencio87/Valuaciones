@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/mapaid"
-        android:visibility="visible">
+        android:visibility="gone">
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -158,7 +158,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/valor_construccion"
-        android:visibility="visible">
+        android:visibility="gone">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -308,7 +308,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/valor_acabados"
-        android:visibility="visible"
+        android:visibility="gone"
         android:background="@color/blanco">
         <LinearLayout
             android:layout_width="match_parent"
@@ -441,7 +441,149 @@
         </LinearLayout>
 
     </ScrollView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/valor_puntos"
+        android:visibility="visible"
+        android:background="@color/blanco">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="50dp"
+            android:visibility="visible"
+            android:background="@color/blanco">
+            <LinearLayout
+                android:id="@+id/cajaEditNiveles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:visibility="visible">
+                <EditText
+                    android:id="@+id/niveles"
+                    android:text="@string/texto17"
+                    android:layout_width="220dp"
+                    android:layout_height="70dp"
+                    android:layout_margin="8dp"
+                    android:textColor="@color/negro"
+                    android:background="@color/blanco"
+                    android:inputType="numberDecimal"
+                    android:textSize="12dp"
+                    android:gravity="center">
+                </EditText>
+                <ImageView
+                    android:id="@+id/cambiar_nivel"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@color/negro">
+                </ImageView>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/cajaNiveles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:visibility="gone"
+                >
+                <TextView
+                    android:id="@+id/niveles_total"
+                    android:layout_width="200dp"
+                    android:layout_height="70dp"
+                    android:layout_margin="8dp"
+                    android:textColor="@color/negro"
+                    android:hint="@string/texto9"
+                    android:background="@color/blanco"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    >
+                </TextView>
+                <ImageView
+                    android:id="@+id/niveles_aprobados"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/aprobado"
+                    >
+                </ImageView>
 
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/puntos_matriz"
+                    android:layout_height="70dp"
+                    android:background="@color/blanco"
+                    android:text="@string/texto16"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/clase"
+                    android:layout_height="70dp"
+                    android:background="@color/blanco"
+                    android:text="@string/texto18"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/valor_unitario"
+                    android:layout_height="70dp"
+                    android:background="@color/blanco"
+                    android:text="@string/texto19"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+                <Button
+                    android:layout_width="150dp"
+                    android:id="@+id/calcularPrecioConstr"
+                    android:layout_height="40dp"
+                    android:background="@color/negro"
+                    android:text="@string/texto20"
+                    android:textSize="16dp"
+                    android:layout_margin="15dp"
+                    android:textColor="@color/blanco"
+                    android:gravity="center"
+                    android:layout_marginBottom="5dp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>
 
 

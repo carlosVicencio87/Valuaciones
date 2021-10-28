@@ -74,19 +74,21 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     private static final int PERMISO_LOCATION=1;
     private LocationManager locationManager;
     private double latitud,longitud,latUpdate,longUpdate;
-    private TextView puntoPartida,valTierra,area_total,val_total_tierra,area_total_construccion;
-    private EditText area,areaConstruccion;
-    private ImageView area_aprobada,cambiar_area,cambiar_area_construccion,area_construccion_aprobada;
+    private TextView puntoPartida,valTierra,area_total,val_total_tierra,area_total_construccion,niveles_total,puntos_matriz,clase,
+            valor_unitario;
+    private EditText area,areaConstruccion,niveles;
+    private ImageView area_aprobada,cambiar_area,cambiar_area_construccion,area_construccion_aprobada,cambiar_nivel,niveles_aprobados;
     private String direccion;
     private Button sigCalculo,sig_Calculo,sigPag;
     private String calle,numeroAlcaldia, nombre_colonia,nombre_alcaldia,colonia_catastral,valor,cp,ciudad,pais;
     private Double areafinal,areaConsFinal,valorConstruccion,valor_muros,valor_materiales,valorMateriales,valorPisos,
             valor_estruc,valorAcabadosM,valorCubiertas,valor_acabadosM,valorAcabadosP,valor_acabadosP,
-            valorFachadas,valor_fachadas,valorVentanerias,valor_ventanerias,valorRecubrimiento,valor_recubrimiento,valorBanos,valor_banos;
+            valorFachadas,valor_fachadas,valorVentanerias,valor_ventanerias,valorRecubrimiento,valor_recubrimiento,valorBanos,valor_banos,
+            nivelesFinal,valor_total_matriz;
     private LatLng coord,coordenadas,latLong;
     private Marker marker;
-    private LinearLayout mapaid,cajaEditararea,cajaArea,cajaAreaCons,cajaCons;
-    private ScrollView valor_construccion,val_tierra,valor_acabados;
+    private LinearLayout mapaid,cajaEditararea,cajaArea,cajaAreaCons,cajaCons,cajaEditNiveles,cajaNiveles;
+    private ScrollView valor_construccion,val_tierra,valor_acabados,valor_puntos;
     private Fragment map;
     private int check=0;
     private static String SERVIDOR_CONTROLADOR;
@@ -165,6 +167,15 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         acabados_recubrimiento=findViewById(R.id.acabados_recubrimiento);
         acabadosbanos=findViewById(R.id.acabadosbanos);
         sigPag=findViewById(R.id.sigPag);
+        valor_puntos=findViewById(R.id.valor_puntos);
+        cajaEditNiveles=findViewById(R.id.cajaEditNiveles);
+        cajaNiveles=findViewById(R.id.cajaNiveles);
+        niveles=findViewById(R.id.niveles);
+        cambiar_nivel=findViewById(R.id.cambiar_nivel);
+        puntos_matriz=findViewById(R.id.puntos_matriz);
+        clase=findViewById(R.id.clase);
+        valor_unitario=findViewById(R.id.valor_unitario);
+        niveles_total=findViewById(R.id.niveles_total);
         setListaEstructura();
         setListaMateriales();
         setListaEntrepisos();
@@ -2062,6 +2073,29 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        sigPag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valor_acabados.setVisibility(View.GONE);
+                valor_puntos.setVisibility(View.VISIBLE);
+                valor_total_matriz=valor_estruc+valorMateriales+valorPisos+valorCubiertas+valorAcabadosM+valorAcabadosP+valorFachadas
+                        +valorVentanerias+valorRecubrimiento+valorBanos;
+                    valor_total_matriz= Double.parseDouble(areaConstruccion.getText().toString());
+
+                Log.e("melapelas",valor_total_matriz+"");
+                puntos_matriz.setText(String.valueOf(valor_total_matriz));
+                Log.e("damelas",""+puntos_matriz);
+            }
+        });
+        cambiar_nivel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cajaEditNiveles.setVisibility(View.GONE);
+                cajaNiveles.setVisibility(View.VISIBLE);
+                nivelesFinal=Double.parseDouble(niveles.getText().toString());
+                niveles_total.setText(String.valueOf(nivelesFinal));
             }
         });
     }

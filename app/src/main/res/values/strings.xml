@@ -15,6 +15,11 @@
     <string name="texto13">Materiales de Muros</string>
     <string name="texto14">Entrepisos</string>
     <string name="texto15">Cubiertas</string>
+    <string name="texto16">Puntos obtenidos en la matriz</string>
+    <string name="texto17">Cantidad de niveles en la construccion</string>
+    <string name="texto18">Clase de construccion</string>
+    <string name="texto19">Valor Unitario por m2</string>
+    <string name="texto20">Calcular $ construccion</string>
     <string name="title_activity_mapa">Map</string>
 
 
