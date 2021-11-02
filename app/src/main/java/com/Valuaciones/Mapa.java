@@ -81,8 +81,8 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     private String direccion;
     private Button sigCalculo,sig_Calculo,sigPag;
     private String calle,numeroAlcaldia, nombre_colonia,nombre_alcaldia,colonia_catastral,valor,cp,ciudad,pais;
-    private Double areafinal,areaConsFinal,valorConstruccion,valor_muros,valor_materiales,valorMateriales,valorPisos,
-            valor_estruc,valorAcabadosM,valorCubiertas,valor_acabadosM,valorAcabadosP,valor_acabadosP,
+    private Double areafinal,areaConsFinal,valorConstruccion,valor_muros,valor_materiales,valorMateriales,valor_pisos,valorPisos,
+            valor_estruc,valor_estructura,valorAcabadosM,valor_cubiertas,valorCubiertas,valor_acabadosM,valorAcabadosP,valor_acabadosP,
             valorFachadas,valor_fachadas,valorVentanerias,valor_ventanerias,valorRecubrimiento,valor_recubrimiento,valorBanos,valor_banos,
             nivelesFinal,valor_total_matriz;
     private LatLng coord,coordenadas,latLong;
@@ -304,7 +304,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 {
                   seleccion_estructura= String.valueOf(1);
                     Log.e("val1",""+seleccion_estructura);
-                    Double valor_estructura= Double.valueOf(seleccion_estructura);
+                     valor_estructura= Double.valueOf(seleccion_estructura);
                     valor_estruc=valor_estructura*valorConstruccion;
                     Log.e("val1",""+valor_estruc);
                     if(valor_estruc<51){
@@ -365,7 +365,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                             Log.e("val2",""+valorMateriales);
                         }
                     }
-                if(seleccion_materiales.equals("Tabicon")){
+                if(seleccion_materiales.equals("Tabique")){
                     seleccion_materiales= String.valueOf(1);
                     valor_materiales= Double.valueOf(seleccion_materiales);
                     valorMateriales=valor_materiales*valorConstruccion;
@@ -409,13 +409,42 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                         Log.e("val2",""+valorMateriales);
                     }
                 }
-
+                if(seleccion_materiales.equals("Tabique")){
+                    seleccion_materiales= String.valueOf(1);
+                    valor_materiales= Double.valueOf(seleccion_materiales);
+                    valorMateriales=valor_materiales*valorConstruccion;
+                    Log.e("val2",""+valorMateriales);
+                    if(valorMateriales>50&&valorMateriales<86){
+                        valorMateriales= Double.valueOf(String.valueOf(11));
+                        Log.e("val2",""+valorMateriales);
+                    }
+                    if(valorMateriales>86&&valorMateriales<151){
+                        valorMateriales= Double.valueOf(String.valueOf(18));
+                        Log.e("val2",""+valorMateriales);
+                    }
+                    if(valorMateriales>151&&valorMateriales<251){
+                        valorMateriales= Double.valueOf(String.valueOf(19));
+                        Log.e("val2",""+valorMateriales);
+                    }
+                    if(valorMateriales>251&&valorMateriales<451){
+                        valorMateriales= Double.valueOf(String.valueOf(20));
+                        Log.e("val2",""+valorMateriales);
+                    }
+                    if(valorMateriales>451&&valorMateriales<651){
+                        valorMateriales= Double.valueOf(String.valueOf(21));
+                        Log.e("val2",""+valorMateriales);
+                    }
+                    if(valorMateriales>651){
+                        valorMateriales= Double.valueOf(String.valueOf(22));
+                        Log.e("val2",""+valorMateriales);
+                    }
+                }
                 if(seleccion_materiales.equals("Sillar de adobe")){
                     seleccion_materiales= String.valueOf(1);
                     valor_materiales= Double.valueOf(seleccion_materiales);
                     valorMateriales=valor_materiales*valorConstruccion;
                     Log.e("val2",""+valorMateriales);
-                    if(valorMateriales>1&&valorMateriales<86){
+                    if(valorMateriales>50&&valorMateriales<86){
                         valorMateriales= Double.valueOf(String.valueOf(11));
                         Log.e("val2",""+valorMateriales);
                     }
@@ -464,8 +493,8 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 Log.e("tipomat",""+seleccion_pisos);
                 if(seleccion_pisos.equals("Sin entrepisos")){
                     seleccion_pisos= String.valueOf(1);
-                    valor_materiales= Double.valueOf(seleccion_pisos);
-                    valorPisos=valor_materiales*valorConstruccion;
+                    valor_pisos= Double.valueOf(seleccion_pisos);
+                    valorPisos=valor_pisos*valorConstruccion;
                     Log.e("val3",""+valorMateriales);
                     if(valorPisos>1){
                         valorPisos= Double.valueOf(String.valueOf(1));
@@ -475,8 +504,8 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
 
                 if(seleccion_pisos.equals("Con o sin losa de concreto")){
                     seleccion_pisos= String.valueOf(1);
-                    valor_materiales= Double.valueOf(seleccion_pisos);
-                    valorPisos=valor_materiales*valorConstruccion;
+                    valor_pisos= Double.valueOf(seleccion_pisos);
+                    valorPisos=valor_pisos*valorConstruccion;
                     Log.e("val3",""+valorPisos);
                     if(valorPisos>1&&valorPisos<86){
                         valorPisos= Double.valueOf(String.valueOf(4));
@@ -503,10 +532,10 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                         Log.e("val3",""+valorPisos);
                     }
                 }
-                if(seleccion_pisos.equals("Con/Sin L.C y/o Concreto")){
+                if(seleccion_pisos.equals("Con/Sin L.C y/o losa aligerada")){
                     seleccion_pisos= String.valueOf(1);
-                    valor_materiales= Double.valueOf(seleccion_pisos);
-                    valorPisos=valor_materiales*valorConstruccion;
+                    valor_pisos= Double.valueOf(seleccion_pisos);
+                    valorPisos=valor_pisos*valorConstruccion;
                     Log.e("val3",""+valorPisos);
                     if(valorPisos>1&&valorPisos<86){
                         valorPisos= Double.valueOf(String.valueOf(4));
@@ -533,10 +562,10 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                         Log.e("val3",""+valorPisos);
                     }
                 }
-                if(seleccion_pisos.equals("Con/Sin L.C y/o Aligerada Madera")){
+                if(seleccion_pisos.equals("Con/Sin L.C y/o de Madera")){
                     seleccion_pisos= String.valueOf(1);
-                    valor_materiales= Double.valueOf(seleccion_pisos);
-                    valorPisos=valor_materiales*valorConstruccion;
+                    valor_pisos= Double.valueOf(seleccion_pisos);
+                    valorPisos=valor_pisos*valorConstruccion;
                     Log.e("val3",""+valorPisos);
                     if(valorPisos>1&&valorPisos<86){
                         valorPisos= Double.valueOf(String.valueOf(4));
@@ -563,10 +592,10 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                         Log.e("val3",""+valorPisos);
                     }
                 }
-                if(seleccion_pisos.equals("Con/Sin L.C y/o Aligerada Reticular")){
+                if(seleccion_pisos.equals("Con/Sin L.C y/o losa reticular")){
                     seleccion_pisos= String.valueOf(1);
-                    valor_materiales= Double.valueOf(seleccion_pisos);
-                    valorPisos=valor_materiales*valorConstruccion;
+                    valor_pisos= Double.valueOf(seleccion_pisos);
+                    valorPisos=valor_pisos*valorConstruccion;
                     Log.e("val3",""+valorMateriales);
                     if(valorPisos>1&&valorPisos<86){
                         valorPisos= Double.valueOf(String.valueOf(4));
@@ -616,8 +645,8 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 Log.e("tipomat",""+seleccion_cubiertas);
                 if(seleccion_cubiertas.equals("Lamina")){
                     seleccion_cubiertas= String.valueOf(1);
-                    valor_materiales= Double.valueOf(seleccion_cubiertas);
-                    valorCubiertas=valor_materiales*valorConstruccion;
+                    valor_cubiertas= Double.valueOf(seleccion_cubiertas);
+                    valorCubiertas=valor_cubiertas*valorConstruccion;
                     Log.e("val4",""+valorCubiertas);
                     if(valorCubiertas>1){
                         valorCubiertas= Double.valueOf(String.valueOf(4));
@@ -627,12 +656,12 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
 
                 if(seleccion_cubiertas.equals("Losa de concreto")){
                     seleccion_cubiertas= String.valueOf(1);
-                    valor_materiales= Double.valueOf(seleccion_cubiertas);
-                    valorCubiertas=valor_materiales*valorConstruccion;
+                    valor_cubiertas= Double.valueOf(seleccion_cubiertas);
+                    valorCubiertas=valor_cubiertas*valorConstruccion;
                     Log.e("val4",""+valorCubiertas);
                     if(valorCubiertas>1&&valorCubiertas<86){
                         valorCubiertas= Double.valueOf(String.valueOf(5));
-                        Log.e("val4",""+valorPisos);
+                        Log.e("val4",""+valorCubiertas);
                     }
                     if(valorCubiertas>86&&valorCubiertas<151){
                         valorCubiertas= Double.valueOf(String.valueOf(6));
@@ -657,11 +686,11 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 }
                 if(seleccion_cubiertas.equals("L.C y/o Aligerada")){
                     seleccion_cubiertas= String.valueOf(1);
-                    valor_materiales= Double.valueOf(seleccion_cubiertas);
-                    valorCubiertas=valor_materiales*valorConstruccion;
+                    valor_cubiertas= Double.valueOf(seleccion_cubiertas);
+                    valorCubiertas=valor_cubiertas*valorConstruccion;
                     Log.e("val4",""+valorCubiertas);
                     if(valorCubiertas>1&&valorCubiertas<86){
-                        valorPisos= Double.valueOf(String.valueOf(5));
+                        valorCubiertas= Double.valueOf(String.valueOf(5));
                         Log.e("val4",""+valorCubiertas);
                     }
                     if(valorCubiertas>86&&valorCubiertas<151){
@@ -687,8 +716,8 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 }
                 if(seleccion_cubiertas.equals("L.C y/o Madera")){
                     seleccion_cubiertas= String.valueOf(1);
-                    valor_materiales= Double.valueOf(seleccion_cubiertas);
-                    valorCubiertas=valor_materiales*valorConstruccion;
+                    valor_cubiertas= Double.valueOf(seleccion_cubiertas);
+                    valorCubiertas=valor_cubiertas*valorConstruccion;
                     Log.e("val4",""+valorCubiertas);
                     if(valorCubiertas>1&&valorCubiertas<86){
                         valorCubiertas= Double.valueOf(String.valueOf(5));
@@ -717,8 +746,8 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 }
                 if(seleccion_cubiertas.equals("Con/Sin L.C y/o Reticular")){
                     seleccion_cubiertas= String.valueOf(1);
-                    valor_materiales= Double.valueOf(seleccion_cubiertas);
-                    valorCubiertas=valor_materiales*valorConstruccion;
+                    valor_cubiertas= Double.valueOf(seleccion_cubiertas);
+                    valorCubiertas=valor_cubiertas*valorConstruccion;
                     Log.e("val4",""+valorCubiertas);
                     if(valorCubiertas>1&&valorCubiertas<86){
                         valorCubiertas= Double.valueOf(String.valueOf(5));
@@ -1195,7 +1224,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                     valor_acabadosP= Double.valueOf(seleccion_acabadosP);
                     valorAcabadosP=valor_acabadosP*valorConstruccion;
                     Log.e("val5",""+valorAcabadosP);
-                    if(valorAcabadosM>1){
+                    if(valorAcabadosP>1){
                         valorAcabadosP= Double.valueOf(String.valueOf(4));
                         Log.e("val5",""+valorAcabadosP);
                     }
@@ -1207,7 +1236,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                     valor_acabadosP= Double.valueOf(seleccion_acabadosP);
                     valorAcabadosP=valor_acabadosP*valorConstruccion;
                     Log.e("val5",""+valorAcabadosP);
-                    if(valorAcabadosM>1){
+                    if(valorAcabadosP>1){
                         valorAcabadosP= Double.valueOf(String.valueOf(4));
                         Log.e("val5",""+valorAcabadosP);
                     }
@@ -1400,7 +1429,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                     valor_acabadosP= Double.valueOf(seleccion_acabadosP);
                     valorAcabadosP=valor_acabadosP*valorConstruccion;
                     Log.e("val5",""+valorAcabadosP);
-                    if(valorAcabadosM>1){
+                    if(valorAcabadosP>1){
                         valorAcabadosP= Double.valueOf(String.valueOf(10));
                         Log.e("val5",""+valorAcabadosP);
                     }
@@ -1412,7 +1441,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                     valor_acabadosP= Double.valueOf(seleccion_acabadosP);
                     valorAcabadosP=valor_acabadosP*valorConstruccion;
                     Log.e("val5",""+valorAcabadosP);
-                    if(valorAcabadosM>1){
+                    if(valorAcabadosP>1){
                         valorAcabadosP= Double.valueOf(String.valueOf(10));
                         Log.e("val5",""+valorAcabadosP);
                     }
@@ -1463,7 +1492,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 if(seleccion_fachadas.equals("Aplanado de mezcla y/o pasta con pintura")){
                     seleccion_fachadas= String.valueOf(1);
                     valor_fachadas= Double.valueOf(seleccion_fachadas);
-                    valorFachadas=valor_fachadas*valorFachadas;
+                    valorFachadas=valor_fachadas*valorConstruccion;
                     Log.e("val5",""+valorFachadas);
                     if(valorFachadas>1){
                         valorFachadas= Double.valueOf(String.valueOf(4));
@@ -1662,10 +1691,10 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                     seleccion_ventaneria= String.valueOf(1);
                     valor_ventanerias= Double.valueOf(seleccion_ventaneria);
                     valorVentanerias=valor_ventanerias*valorConstruccion;
-                    Log.e("val5",""+valorFachadas);
-                    if(valorFachadas>1){
-                        valorFachadas= Double.valueOf(String.valueOf(1));
-                        Log.e("val5",""+valorFachadas);
+                    Log.e("val5",""+valorVentanerias);
+                    if(valorVentanerias>1){
+                        valorVentanerias= Double.valueOf(String.valueOf(1));
+                        Log.e("val5",""+valorVentanerias);
                     }
                 }
                 if(seleccion_ventaneria.equals("Perfil de aluminio natural de 1'' y/o Perfil de fierro estructural 1''")){
@@ -1678,7 +1707,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                         Log.e("val5",""+valorVentanerias);
                     }
                 }
-                if(seleccion_fachadas.equals("Perfil de aluminio natural de 1'' y/o Perfil tubular de pared delgada")){
+                if(seleccion_ventaneria.equals("Perfil de aluminio natural de 1'' y/o Perfil tubular de pared delgada")){
                     seleccion_ventaneria= String.valueOf(1);
                     valor_ventanerias= Double.valueOf(seleccion_ventaneria);
                     valorVentanerias=valor_ventanerias*valorConstruccion;
@@ -1808,8 +1837,8 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 }
 
 
-                Log.e("tipo",""+valor_fachadas);
-                Log.e("tipo",""+position);
+                Log.e("tipo",""+valorVentanerias);
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -1849,7 +1878,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                         Log.e("val6",""+valorRecubrimiento);
                     }
                 }
-                if(seleccion_recubrimiento.equals("")){
+                if(seleccion_recubrimiento.equals("Mosaicos de 20x20cm y/o loseta ceramica de 20x20cm")){
                     seleccion_recubrimiento= String.valueOf(1);
                     valor_recubrimiento= Double.valueOf(seleccion_recubrimiento);
                     valorRecubrimiento=valor_recubrimiento*valorConstruccion;
@@ -1965,7 +1994,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                     seleccion_recubrimiento= String.valueOf(1);
                     valor_recubrimiento= Double.valueOf(seleccion_recubrimiento);
                     valorRecubrimiento=valor_recubrimiento*valorConstruccion;
-                    Log.e("val6",""+valorVentanerias);
+                    Log.e("val6",""+valorRecubrimiento);
                     if(valorRecubrimiento>1){
                         valorRecubrimiento= Double.valueOf(String.valueOf(20));
                         Log.e("val6",""+valorRecubrimiento);
@@ -2080,13 +2109,12 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
             public void onClick(View v) {
                 valor_acabados.setVisibility(View.GONE);
                 valor_puntos.setVisibility(View.VISIBLE);
-                valor_total_matriz=valor_estruc+valorMateriales+valorPisos+valorCubiertas+valorAcabadosM+valorAcabadosP+valorFachadas
-                        +valorVentanerias+valorRecubrimiento+valorBanos;
-                    valor_total_matriz= Double.parseDouble(areaConstruccion.getText().toString());
+                Log.e("cadena total",""+valor_estruc+valorMateriales+valorPisos+valorCubiertas+valorAcabadosM+valorAcabadosP+valorFachadas+valorVentanerias+valorRecubrimiento+valorBanos);
+                valor_total_matriz=valor_estruc+valorMateriales+valorPisos+valorCubiertas+valorAcabadosM+valorAcabadosP+valorFachadas+valorVentanerias+valorRecubrimiento+valorBanos;
+                Log.e("VALOR MATRIZ",valor_total_matriz+"");
 
-                Log.e("melapelas",valor_total_matriz+"");
                 puntos_matriz.setText(String.valueOf(valor_total_matriz));
-                Log.e("damelas",""+puntos_matriz);
+
             }
         });
         cambiar_nivel.setOnClickListener(new View.OnClickListener() {
@@ -2380,7 +2408,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     public void setListaMateriales()
     {
         listaMateriales.clear();
-        String coy1[] = {"", "Lamina","Madera", "Tabicon", "Block","Tabique","Sillar de adobe"};
+        String coy1[] = {"Lamina","Madera", "Tabicon", "Block","Tabique","Sillar de adobe"};
         for (int i=0; i<coy1.length;i++)
         {
             final SpinnerModel sched = new SpinnerModel();
@@ -2394,7 +2422,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     {
         listaEntrepisos.clear();
         String coy2[] = {"", "Sin entrepisos","Con o sin losa de concreto",
-                "Con/Sin L.C y/o Aligerada", "Con/Sin L.C y/o Madera","Con/Sin L.C y/o Reticular"};
+                "Con/Sin L.C y/o losa aligerada", "Con/Sin L.C y/o de Madera","Con/Sin L.C y/o losa reticular"};
         for (int i=0; i<coy2.length;i++)
         {
             final SpinnerModel sched = new SpinnerModel();
