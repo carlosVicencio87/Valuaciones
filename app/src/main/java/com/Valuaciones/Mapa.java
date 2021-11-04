@@ -2196,71 +2196,71 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 }
 
 
-                if(nivelesFinal>5&&nivelesFinal<10&&tipo_clase==1){
+                if(nivelesFinal>4&&nivelesFinal<10&&tipo_clase==1){
                     valor_unitario_total=0.0;
                 }
-                if(nivelesFinal>5&&nivelesFinal<10&&tipo_clase==2){
+                if(nivelesFinal>4&&nivelesFinal<10&&tipo_clase==2){
                     valor_unitario_total=2493.85;
                 }
-                if(nivelesFinal>5&&nivelesFinal<10&&tipo_clase==3){
+                if(nivelesFinal>4&&nivelesFinal<10&&tipo_clase==3){
                     valor_unitario_total=3724.50;
                 }
-                if(nivelesFinal>5&&nivelesFinal<10&&tipo_clase==4){
+                if(nivelesFinal>4&&nivelesFinal<10&&tipo_clase==4){
                     valor_unitario_total=6818.19;
                 }
-                if(nivelesFinal>5&&nivelesFinal<10&&tipo_clase==5){
+                if(nivelesFinal>4&&nivelesFinal<10&&tipo_clase==5){
                     valor_unitario_total=8335.69;
                 }
-                if(nivelesFinal>5&&nivelesFinal<10&&tipo_clase==6){
+                if(nivelesFinal>4&&nivelesFinal<10&&tipo_clase==6){
                     valor_unitario_total=12989.05;
                 }
-                if(nivelesFinal>5&&nivelesFinal<10&&tipo_clase==7){
+                if(nivelesFinal>4&&nivelesFinal<10&&tipo_clase==7){
                     valor_unitario_total=14973.79;
                 }
 
 
-                if(nivelesFinal>10&&nivelesFinal<15&&tipo_clase==1){
+                if(nivelesFinal>9&&nivelesFinal<15&&tipo_clase==1){
                     valor_unitario_total=0.0;
                 }
-                if(nivelesFinal>10&&nivelesFinal<15&&tipo_clase==2){
+                if(nivelesFinal>9&&nivelesFinal<15&&tipo_clase==2){
                     valor_unitario_total=0.0;
                 }
-                if(nivelesFinal>10&&nivelesFinal<15&&tipo_clase==3){
+                if(nivelesFinal>9&&nivelesFinal<15&&tipo_clase==3){
                     valor_unitario_total=3960.84;
                 }
-                if(nivelesFinal>10&&nivelesFinal<15&&tipo_clase==4){
+                if(nivelesFinal>9&&nivelesFinal<15&&tipo_clase==4){
                     valor_unitario_total=7228.94;
                 }
-                if(nivelesFinal>10&&nivelesFinal<15&&tipo_clase==5){
+                if(nivelesFinal>9&&nivelesFinal<15&&tipo_clase==5){
                     valor_unitario_total=9771.77;
                 }
-                if(nivelesFinal>10&&nivelesFinal<15&&tipo_clase==6){
+                if(nivelesFinal>9&&nivelesFinal<15&&tipo_clase==6){
                     valor_unitario_total=14664.43;
                 }
-                if(nivelesFinal>10&&nivelesFinal<15&&tipo_clase==7){
+                if(nivelesFinal>9&&nivelesFinal<15&&tipo_clase==7){
                     valor_unitario_total=16435.01;
                 }
 
 
-                if(nivelesFinal>15&&nivelesFinal<20&&tipo_clase==1){
+                if(nivelesFinal>14&&nivelesFinal<20&&tipo_clase==1){
                     valor_unitario_total=0.0;
                 }
-                if(nivelesFinal>15&&nivelesFinal<20&&tipo_clase==2){
+                if(nivelesFinal>14&&nivelesFinal<20&&tipo_clase==2){
                     valor_unitario_total=0.0;
                 }
-                if(nivelesFinal>15&&nivelesFinal<20&&tipo_clase==3){
+                if(nivelesFinal>14&&nivelesFinal<20&&tipo_clase==3){
                     valor_unitario_total=4490.58;
                 }
-                if(nivelesFinal>15&&nivelesFinal<20&&tipo_clase==4){
+                if(nivelesFinal>14&&nivelesFinal<20&&tipo_clase==4){
                     valor_unitario_total=8200.41;
                 }
-                if(nivelesFinal>15&&nivelesFinal<20&&tipo_clase==5){
+                if(nivelesFinal>14&&nivelesFinal<20&&tipo_clase==5){
                     valor_unitario_total=11078.95;
                 }
-                if(nivelesFinal>15&&nivelesFinal<20&&tipo_clase==6){
+                if(nivelesFinal>14&&nivelesFinal<20&&tipo_clase==6){
                     valor_unitario_total=16831.01;
                 }
-                if(nivelesFinal>15&&nivelesFinal<20&&tipo_clase==7){
+                if(nivelesFinal>14&&nivelesFinal<20&&tipo_clase==7){
                     valor_unitario_total=19405.41;
                 }
 
@@ -2287,7 +2287,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                     valor_unitario_total=22475.44;
                 }
                 Log.e("valor unitario",""+valor_unitario_total);
-                valor_unitario.setText(""+String.valueOf(valor_unitario_total));
+                valor_unitario.setText("$"+String.valueOf(valor_unitario_total));
             }
         });
     }
