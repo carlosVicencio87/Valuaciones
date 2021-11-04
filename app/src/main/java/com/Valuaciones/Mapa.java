@@ -84,7 +84,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     private Double areafinal,areaConsFinal,valorConstruccion,valor_muros,valor_materiales,valorMateriales,valor_pisos,valorPisos,
             valor_estruc,valor_estructura,valorAcabadosM,valor_cubiertas,valorCubiertas,valor_acabadosM,valorAcabadosP,valor_acabadosP,
             valorFachadas,valor_fachadas,valorVentanerias,valor_ventanerias,valorRecubrimiento,valor_recubrimiento,valorBanos,valor_banos,
-            nivelesFinal,valor_total_matriz;
+            nivelesFinal,valor_total_matriz,tipo_clase,valor_unitario_total;
     private LatLng coord,coordenadas,latLong;
     private Marker marker;
     private LinearLayout mapaid,cajaEditararea,cajaArea,cajaAreaCons,cajaCons,cajaEditNiveles,cajaNiveles;
@@ -365,7 +365,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                             Log.e("val2",""+valorMateriales);
                         }
                     }
-                if(seleccion_materiales.equals("Tabique")){
+                if(seleccion_materiales.equals("Tabicon")){
                     seleccion_materiales= String.valueOf(1);
                     valor_materiales= Double.valueOf(seleccion_materiales);
                     valorMateriales=valor_materiales*valorConstruccion;
@@ -414,7 +414,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                     valor_materiales= Double.valueOf(seleccion_materiales);
                     valorMateriales=valor_materiales*valorConstruccion;
                     Log.e("val2",""+valorMateriales);
-                    if(valorMateriales>50&&valorMateriales<86){
+                    if(valorMateriales>1&&valorMateriales<86){
                         valorMateriales= Double.valueOf(String.valueOf(11));
                         Log.e("val2",""+valorMateriales);
                     }
@@ -444,7 +444,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                     valor_materiales= Double.valueOf(seleccion_materiales);
                     valorMateriales=valor_materiales*valorConstruccion;
                     Log.e("val2",""+valorMateriales);
-                    if(valorMateriales>50&&valorMateriales<86){
+                    if(valorMateriales>1&&valorMateriales<86){
                         valorMateriales= Double.valueOf(String.valueOf(11));
                         Log.e("val2",""+valorMateriales);
                     }
@@ -744,7 +744,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                         Log.e("val4",""+valorCubiertas);
                     }
                 }
-                if(seleccion_cubiertas.equals("Con/Sin L.C y/o Reticular")){
+                if(seleccion_cubiertas.equals("L.C y/o Reticular")){
                     seleccion_cubiertas= String.valueOf(1);
                     valor_cubiertas= Double.valueOf(seleccion_cubiertas);
                     valorCubiertas=valor_cubiertas*valorConstruccion;
@@ -2097,7 +2097,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                         Log.e("val6",""+valorBanos);
                     }
                 }
-                Log.e("tipo",""+valor_recubrimiento);
+                Log.e("tipo",""+valor_banos);
                 Log.e("tipo",""+position);
             }
             @Override
@@ -2109,12 +2109,35 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
             public void onClick(View v) {
                 valor_acabados.setVisibility(View.GONE);
                 valor_puntos.setVisibility(View.VISIBLE);
+                Log.e("baños valor",""+valorBanos);
                 Log.e("cadena total",""+valor_estruc+valorMateriales+valorPisos+valorCubiertas+valorAcabadosM+valorAcabadosP+valorFachadas+valorVentanerias+valorRecubrimiento+valorBanos);
                 valor_total_matriz=valor_estruc+valorMateriales+valorPisos+valorCubiertas+valorAcabadosM+valorAcabadosP+valorFachadas+valorVentanerias+valorRecubrimiento+valorBanos;
                 Log.e("VALOR MATRIZ",valor_total_matriz+"");
 
                 puntos_matriz.setText(String.valueOf(valor_total_matriz));
+                if(valor_total_matriz>0&&valor_total_matriz<38){
+                    tipo_clase=Double.valueOf(String.valueOf(1));
 
+                }
+                if(valor_total_matriz>39&&valor_total_matriz<60){
+                    tipo_clase=Double.valueOf(String.valueOf(2));
+                }
+                if(valor_total_matriz>61&&valor_total_matriz<85){
+                    tipo_clase=Double.valueOf(String.valueOf(3));
+                }
+                if(valor_total_matriz>86&&valor_total_matriz<115){
+                    tipo_clase=Double.valueOf(String.valueOf(4));
+                }
+                if(valor_total_matriz>116&&valor_total_matriz<145){
+                    tipo_clase=Double.valueOf(String.valueOf(5));
+                }
+                if(valor_total_matriz>146&&valor_total_matriz<180){
+                    tipo_clase=Double.valueOf(String.valueOf(6));
+                }
+                if(valor_total_matriz>181){
+                    tipo_clase=Double.valueOf(String.valueOf(7));
+                }
+                clase.setText(String.valueOf(tipo_clase));
             }
         });
         cambiar_nivel.setOnClickListener(new View.OnClickListener() {
@@ -2124,6 +2147,147 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 cajaNiveles.setVisibility(View.VISIBLE);
                 nivelesFinal=Double.parseDouble(niveles.getText().toString());
                 niveles_total.setText(String.valueOf(nivelesFinal));
+
+                valor_unitario_total=111.0;
+
+                if(nivelesFinal>0&&nivelesFinal<3&&tipo_clase==1){
+                    valor_unitario_total=1365.93;
+                }
+                if(nivelesFinal>0&&nivelesFinal<3&&tipo_clase==2){
+                    valor_unitario_total=2081.46;
+                }
+                if(nivelesFinal>0&&nivelesFinal<3&&tipo_clase==3){
+                    valor_unitario_total=3370.78;
+                }
+                if(nivelesFinal>0&&nivelesFinal<3&&tipo_clase==4){
+                    valor_unitario_total=4541.11;
+                }
+                if(nivelesFinal>0&&nivelesFinal<3&&tipo_clase==5){
+                    valor_unitario_total=7517.45;
+                }
+                if(nivelesFinal>0&&nivelesFinal<3&&tipo_clase==6){
+                    valor_unitario_total=10673.50;
+                }
+                if(nivelesFinal>0&&nivelesFinal<3&&tipo_clase==7){
+                    valor_unitario_total=12233.78;
+                }
+
+
+                if(nivelesFinal>2&&nivelesFinal<5&&tipo_clase==1){
+                    valor_unitario_total=0.0;
+                }
+                if(nivelesFinal>2&&nivelesFinal<5&&tipo_clase==2){
+                    valor_unitario_total=2216.75;
+                }
+                if(nivelesFinal>2&&nivelesFinal<5&&tipo_clase==3){
+                    valor_unitario_total=3732.64;
+                }
+                if(nivelesFinal>2&&nivelesFinal<5&&tipo_clase==4){
+                    valor_unitario_total=5579.40;
+                }
+                if(nivelesFinal>2&&nivelesFinal<5&&tipo_clase==5){
+                    valor_unitario_total=7538.63;
+                }
+                if(nivelesFinal>2&&nivelesFinal<5&&tipo_clase==6){
+                    valor_unitario_total=12261.56;
+                }
+                if(nivelesFinal>2&&nivelesFinal<5&&tipo_clase==7){
+                    valor_unitario_total=14242.54;
+                }
+
+
+                if(nivelesFinal>5&&nivelesFinal<10&&tipo_clase==1){
+                    valor_unitario_total=0.0;
+                }
+                if(nivelesFinal>5&&nivelesFinal<10&&tipo_clase==2){
+                    valor_unitario_total=2493.85;
+                }
+                if(nivelesFinal>5&&nivelesFinal<10&&tipo_clase==3){
+                    valor_unitario_total=3724.50;
+                }
+                if(nivelesFinal>5&&nivelesFinal<10&&tipo_clase==4){
+                    valor_unitario_total=6818.19;
+                }
+                if(nivelesFinal>5&&nivelesFinal<10&&tipo_clase==5){
+                    valor_unitario_total=8335.69;
+                }
+                if(nivelesFinal>5&&nivelesFinal<10&&tipo_clase==6){
+                    valor_unitario_total=12989.05;
+                }
+                if(nivelesFinal>5&&nivelesFinal<10&&tipo_clase==7){
+                    valor_unitario_total=14973.79;
+                }
+
+
+                if(nivelesFinal>10&&nivelesFinal<15&&tipo_clase==1){
+                    valor_unitario_total=0.0;
+                }
+                if(nivelesFinal>10&&nivelesFinal<15&&tipo_clase==2){
+                    valor_unitario_total=0.0;
+                }
+                if(nivelesFinal>10&&nivelesFinal<15&&tipo_clase==3){
+                    valor_unitario_total=3960.84;
+                }
+                if(nivelesFinal>10&&nivelesFinal<15&&tipo_clase==4){
+                    valor_unitario_total=7228.94;
+                }
+                if(nivelesFinal>10&&nivelesFinal<15&&tipo_clase==5){
+                    valor_unitario_total=9771.77;
+                }
+                if(nivelesFinal>10&&nivelesFinal<15&&tipo_clase==6){
+                    valor_unitario_total=14664.43;
+                }
+                if(nivelesFinal>10&&nivelesFinal<15&&tipo_clase==7){
+                    valor_unitario_total=16435.01;
+                }
+
+
+                if(nivelesFinal>15&&nivelesFinal<20&&tipo_clase==1){
+                    valor_unitario_total=0.0;
+                }
+                if(nivelesFinal>15&&nivelesFinal<20&&tipo_clase==2){
+                    valor_unitario_total=0.0;
+                }
+                if(nivelesFinal>15&&nivelesFinal<20&&tipo_clase==3){
+                    valor_unitario_total=4490.58;
+                }
+                if(nivelesFinal>15&&nivelesFinal<20&&tipo_clase==4){
+                    valor_unitario_total=8200.41;
+                }
+                if(nivelesFinal>15&&nivelesFinal<20&&tipo_clase==5){
+                    valor_unitario_total=11078.95;
+                }
+                if(nivelesFinal>15&&nivelesFinal<20&&tipo_clase==6){
+                    valor_unitario_total=16831.01;
+                }
+                if(nivelesFinal>15&&nivelesFinal<20&&tipo_clase==7){
+                    valor_unitario_total=19405.41;
+                }
+
+
+                if(nivelesFinal>20&&tipo_clase==1){
+                    valor_unitario_total=0.0;
+                }
+                if(nivelesFinal>20&&tipo_clase==2){
+                    valor_unitario_total=0.0;
+                }
+                if(nivelesFinal>20&&tipo_clase==3){
+                    valor_unitario_total=4567.20;
+                }
+                if(nivelesFinal>20&&tipo_clase==4){
+                    valor_unitario_total=8337.34;
+                }
+                if(nivelesFinal>20&&tipo_clase==5){
+                    valor_unitario_total=11264.75;
+                }
+                if(nivelesFinal>20&&tipo_clase==6){
+                    valor_unitario_total=19842.08;
+                }
+                if(nivelesFinal>20&&tipo_clase==7){
+                    valor_unitario_total=22475.44;
+                }
+                Log.e("valor unitario",""+valor_unitario_total);
+                valor_unitario.setText(""+String.valueOf(valor_unitario_total));
             }
         });
     }
