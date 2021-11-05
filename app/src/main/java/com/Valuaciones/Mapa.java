@@ -75,16 +75,16 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     private LocationManager locationManager;
     private double latitud,longitud,latUpdate,longUpdate;
     private TextView puntoPartida,valTierra,area_total,val_total_tierra,area_total_construccion,niveles_total,puntos_matriz,clase,
-            valor_unitario,valor_dinero_m2;
+            valor_unitario,valor_dinero_m2,instalaciones;
     private EditText area,areaConstruccion,niveles;
     private ImageView area_aprobada,cambiar_area,cambiar_area_construccion,area_construccion_aprobada,cambiar_nivel,niveles_aprobados;
     private String direccion;
-    private Button sigCalculo,sig_Calculo,sigPag;
+    private Button sigCalculo,sig_Calculo,sigPag,calcularPrecioConstr;
     private String calle,numeroAlcaldia, nombre_colonia,nombre_alcaldia,colonia_catastral,valor,cp,ciudad,pais;
     private Double areafinal,areaConsFinal,valorConstruccion,valor_muros,valor_materiales,valorMateriales,valor_pisos,valorPisos,
             valor_estruc,valor_estructura,valorAcabadosM,valor_cubiertas,valorCubiertas,valor_acabadosM,valorAcabadosP,valor_acabadosP,
             valorFachadas,valor_fachadas,valorVentanerias,valor_ventanerias,valorRecubrimiento,valor_recubrimiento,valorBanos,valor_banos,
-            nivelesFinal,valor_total_matriz,tipo_clase,valor_unitario_total;
+            nivelesFinal,valor_total_matriz,tipo_clase,valor_unitario_total,precio_fisico_construccion,valor_instalaciones;
     private LatLng coord,coordenadas,latLong;
     private Marker marker;
     private LinearLayout mapaid,cajaEditararea,cajaArea,cajaAreaCons,cajaCons,cajaEditNiveles,cajaNiveles;
@@ -178,6 +178,8 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         niveles_total=findViewById(R.id.niveles_total);
         valor_m2=findViewById(R.id.valor_m2);
         valor_dinero_m2=findViewById(R.id.valor_dinero_m2);
+        calcularPrecioConstr=findViewById(R.id.calcularPrecioConstr);
+        instalaciones=findViewById(R.id.instalaciones);
         setListaEstructura();
         setListaMateriales();
         setListaEntrepisos();
@@ -2290,6 +2292,16 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 }
                 Log.e("valor unitario",""+valor_unitario_total);
                 valor_unitario.setText("$"+String.valueOf(valor_unitario_total));
+            }
+        });
+        calcularPrecioConstr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valor_puntos.setVisibility(View.GONE);
+                valor_m2.setVisibility(View.VISIBLE);
+                precio_fisico_construccion=valorConstruccion*valor_unitario_total;
+                valor_dinero_m2.setText("$"+String.valueOf(precio_fisico_construccion));
+                valor_instalaciones=precio_fisico_construccion*0.8;
             }
         });
     }
