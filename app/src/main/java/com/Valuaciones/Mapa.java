@@ -75,7 +75,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     private LocationManager locationManager;
     private double latitud,longitud,latUpdate,longUpdate;
     private TextView puntoPartida,valTierra,area_total,val_total_tierra,area_total_construccion,niveles_total,puntos_matriz,clase,
-            valor_unitario;
+            valor_unitario,valor_dinero_m2;
     private EditText area,areaConstruccion,niveles;
     private ImageView area_aprobada,cambiar_area,cambiar_area_construccion,area_construccion_aprobada,cambiar_nivel,niveles_aprobados;
     private String direccion;
@@ -88,7 +88,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     private LatLng coord,coordenadas,latLong;
     private Marker marker;
     private LinearLayout mapaid,cajaEditararea,cajaArea,cajaAreaCons,cajaCons,cajaEditNiveles,cajaNiveles;
-    private ScrollView valor_construccion,val_tierra,valor_acabados,valor_puntos;
+    private ScrollView valor_construccion,val_tierra,valor_acabados,valor_puntos,valor_m2;
     private Fragment map;
     private int check=0;
     private static String SERVIDOR_CONTROLADOR;
@@ -176,6 +176,8 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         clase=findViewById(R.id.clase);
         valor_unitario=findViewById(R.id.valor_unitario);
         niveles_total=findViewById(R.id.niveles_total);
+        valor_m2=findViewById(R.id.valor_m2);
+        valor_dinero_m2=findViewById(R.id.valor_dinero_m2);
         setListaEstructura();
         setListaMateriales();
         setListaEntrepisos();

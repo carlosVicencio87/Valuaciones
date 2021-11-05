@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/mapaid"
-        android:visibility="visible">
+        android:visibility="gone">
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -583,6 +583,29 @@
             </LinearLayout>
         </LinearLayout>
 
+    </ScrollView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/valor_m2"
+        android:visibility="gone"
+        android:background="@color/blanco">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+            <TextView
+                android:layout_width="250dp"
+                android:id="@+id/valor_dinero_m2"
+                android:layout_height="70dp"
+                android:background="@color/blanco"
+                android:text="@string/texto21"
+                android:textSize="14dp"
+                android:layout_margin="30dp"
+                android:textColor="@color/negro"
+                android:gravity="center"
+                android:layout_marginBottom="10dp" />
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>
 
