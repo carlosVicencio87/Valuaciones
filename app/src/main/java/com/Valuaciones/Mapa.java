@@ -6,25 +6,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
-import android.app.Activity;
-import android.app.DownloadManager;
-import android.app.backup.BackupDataOutput;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,7 +29,6 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -50,7 +43,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -75,19 +67,21 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     private LocationManager locationManager;
     private double latitud,longitud,latUpdate,longUpdate;
     private TextView puntoPartida,valTierra,area_total,val_total_tierra,area_total_construccion,niveles_total,puntos_matriz,clase,
-            valor_unitario,valor_dinero_m2,instalaciones;
-    private EditText area,areaConstruccion,niveles;
-    private ImageView area_aprobada,cambiar_area,cambiar_area_construccion,area_construccion_aprobada,cambiar_nivel,niveles_aprobados;
+            valor_unitario,valor_dinero_m2,instalaciones,años_construccion_final,valor_condepreciacion,valor_real;
+    private EditText area,areaConstruccion,niveles,años_construccion;
+    private ImageView area_aprobada,cambiar_area,cambiar_area_construccion,area_construccion_aprobada,cambiar_nivel,niveles_aprobados,cambiar_tiempo,cambiar_tiempo_final;
     private String direccion;
     private Button sigCalculo,sig_Calculo,sigPag,calcularPrecioConstr;
     private String calle,numeroAlcaldia, nombre_colonia,nombre_alcaldia,colonia_catastral,valor,cp,ciudad,pais;
     private Double areafinal,areaConsFinal,valorConstruccion,valor_muros,valor_materiales,valorMateriales,valor_pisos,valorPisos,
             valor_estruc,valor_estructura,valorAcabadosM,valor_cubiertas,valorCubiertas,valor_acabadosM,valorAcabadosP,valor_acabadosP,
             valorFachadas,valor_fachadas,valorVentanerias,valor_ventanerias,valorRecubrimiento,valor_recubrimiento,valorBanos,valor_banos,
-            nivelesFinal,valor_total_matriz,tipo_clase,valor_unitario_total,precio_fisico_construccion,valor_instalaciones;
+            nivelesFinal,valor_total_matriz,tipo_clase,valor_unitario_total,precio_fisico_construccion,valor_instalaciones,valor_años
+            ,valor_depreciacion, valor_de_depreciacion,valor_con_depreciacion;
     private LatLng coord,coordenadas,latLong;
     private Marker marker;
-    private LinearLayout mapaid,cajaEditararea,cajaArea,cajaAreaCons,cajaCons,cajaEditNiveles,cajaNiveles;
+    private LinearLayout mapaid,cajaEditararea,cajaArea,cajaAreaCons,cajaCons,cajaEditNiveles,cajaNiveles,caja_años,
+            caja_años_final,caja_valor_depreciacion,caja_valor_real;
     private ScrollView valor_construccion,val_tierra,valor_acabados,valor_puntos,valor_m2;
     private Fragment map;
     private int check=0;
@@ -176,10 +170,22 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         clase=findViewById(R.id.clase);
         valor_unitario=findViewById(R.id.valor_unitario);
         niveles_total=findViewById(R.id.niveles_total);
+        niveles_aprobados=findViewById(R.id.niveles_aprobados);
         valor_m2=findViewById(R.id.valor_m2);
         valor_dinero_m2=findViewById(R.id.valor_dinero_m2);
         calcularPrecioConstr=findViewById(R.id.calcularPrecioConstr);
         instalaciones=findViewById(R.id.instalaciones);
+        años_construccion=findViewById(R.id.años_construccion);
+        caja_años=findViewById(R.id.caja_años);
+        caja_años_final=findViewById(R.id.caja_años_final);
+        años_construccion_final=findViewById(R.id.años_construccion_final);
+        cambiar_tiempo_final=findViewById(R.id.cambiar_tiempo_final);
+        cambiar_tiempo=findViewById(R.id.cambiar_tiempo);
+        caja_valor_depreciacion=findViewById(R.id.caja_valor_depreciacion);
+        valor_condepreciacion=findViewById(R.id.valor_condepreciacion);
+        caja_valor_real=findViewById(R.id.caja_valor_real);
+        valor_real=findViewById(R.id.valor_real);
+
         setListaEstructura();
         setListaMateriales();
         setListaEntrepisos();
@@ -2294,16 +2300,51 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 valor_unitario.setText("$"+String.valueOf(valor_unitario_total));
             }
         });
+        niveles_aprobados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cajaEditNiveles.setVisibility(View.VISIBLE);
+                cajaNiveles.setVisibility(View.GONE);
+
+            }
+        });
         calcularPrecioConstr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 valor_puntos.setVisibility(View.GONE);
                 valor_m2.setVisibility(View.VISIBLE);
                 precio_fisico_construccion=valorConstruccion*valor_unitario_total;
+                Log.e("valFisico",""+precio_fisico_construccion);
                 valor_dinero_m2.setText("$"+String.valueOf(precio_fisico_construccion));
                 valor_instalaciones=precio_fisico_construccion*0.8;
+                instalaciones.setText("$"+String.valueOf(valor_instalaciones));
             }
         });
+        cambiar_tiempo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                caja_años.setVisibility(View.GONE);
+                caja_años_final.setVisibility(View.VISIBLE);
+                valor_años=Double.parseDouble(años_construccion.getText().toString());
+                 años_construccion_final.setText(String.valueOf(valor_años));
+                 valor_depreciacion=valor_años*0.008;
+                 Log.e("porcentaje depreciacion",""+valor_depreciacion);
+                valor_de_depreciacion =precio_fisico_construccion*valor_depreciacion;
+                Log.e("$construcion",""+ valor_de_depreciacion);
+                valor_condepreciacion.setText("$"+String.valueOf(valor_de_depreciacion));
+                valor_con_depreciacion=precio_fisico_construccion-valor_de_depreciacion;
+                valor_real.setText("$"+String.valueOf(valor_con_depreciacion));
+
+            }
+        });
+        cambiar_tiempo_final.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                caja_años.setVisibility(View.VISIBLE);
+                caja_años_final.setVisibility(View.GONE);
+            }
+        });
+
     }
     /**
      * Manipulates the map once available.

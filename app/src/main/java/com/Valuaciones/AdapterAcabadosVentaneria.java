@@ -46,7 +46,7 @@ public class AdapterAcabadosVentaneria extends ArrayAdapter<String> {
         //ImageView iconoTipo = (ImageView) row.findViewById(R.id.imagenSpinner);
         if (position==0)
         {
-            label.setText("Acabados fachadas");
+            label.setText("Ventaneria");
         }
         else
         {

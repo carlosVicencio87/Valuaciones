@@ -593,34 +593,134 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
-            <TextView
-                android:layout_width="250dp"
-                android:id="@+id/valor_dinero_m2"
-                android:layout_height="70dp"
-                android:background="@color/blanco"
-                android:text="@string/texto21"
-                android:textSize="14dp"
-                android:layout_margin="30dp"
-                android:textColor="@color/negro"
+            android:gravity="center"
+            android:orientation="vertical">
+           >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+                LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/valor_dinero_m2"
+                    android:layout_height="70dp"
+                    android:background="@color/blanco"
+                    android:text="@string/texto21"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/instalaciones"
+                    android:layout_height="70dp"
+                    android:background="@color/blanco"
+                    android:text="@string/texto21"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/caja_años"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:layout_marginBottom="10dp" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
-            <TextView
-                android:layout_width="250dp"
-                android:id="@+id/instalaciones"
-                android:layout_height="70dp"
-                android:background="@color/blanco"
-                android:text="@string/texto21"
-                android:textSize="14dp"
-                android:layout_margin="30dp"
-                android:textColor="@color/negro"
+                android:orientation="horizontal">
+                <EditText
+                    android:layout_width="250dp"
+                    android:id="@+id/años_construccion"
+                    android:layout_height="70dp"
+                    android:background="@color/blanco"
+                    android:text="@string/texto21"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:inputType="number"/>
+                <ImageView
+                    android:id="@+id/cambiar_tiempo"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@color/negro"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/caja_años_final"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:layout_marginBottom="10dp" />
+                android:orientation="horizontal"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/años_construccion_final"
+                    android:layout_height="70dp"
+                    android:background="@color/blanco"
+                    android:text="@string/texto21"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"/>
+                <ImageView
+                    android:id="@+id/cambiar_tiempo_final"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@color/negro"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/caja_valor_depreciacion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/valor_condepreciacion"
+                    android:layout_height="70dp"
+                    android:background="@color/blanco"
+                    android:text="@string/texto21"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:inputType="number"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/caja_valor_real"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/valor_real"
+                    android:layout_height="70dp"
+                    android:background="@color/blanco"
+                    android:text="@string/texto21"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:inputType="number"/>
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
