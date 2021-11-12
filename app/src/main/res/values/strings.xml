@@ -25,6 +25,12 @@
     <string name="texto23">Tiempo de la construccion (años)</string>
     <string name="texto24">Valor de depreciacion</string>
     <string name="texto25">Calcular Isai </string>
+    <string name="texto26">Acabados muros</string>
+    <string name="texto27">Acabados pisos</string>
+    <string name="texto28">Acabados Fachadas</string>
+    <string name="texto29">Acabados Ventanerias</string>
+    <string name="texto30">Acabados Recubrimientos</string>
+    <string name="texto31">Acabados Baños</string>
     <string name="title_activity_mapa">Map</string>
 
 
