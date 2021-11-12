@@ -21,6 +21,10 @@
     <string name="texto19">Valor Unitario por m2</string>
     <string name="texto20">Calcular $ construccion</string>
     <string name="texto21">precio $ construccion</string>
+    <string name="texto22">precio $ instalaciones</string>
+    <string name="texto23">Tiempo de la construccion (años)</string>
+    <string name="texto24">Valor de depreciacion</string>
+    <string name="texto25">Calcular Isai </string>
     <string name="title_activity_mapa">Map</string>
 
 

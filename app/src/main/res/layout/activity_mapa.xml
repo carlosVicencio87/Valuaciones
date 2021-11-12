@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/mapaid"
-        android:visibility="visible">
+        android:visibility="gone">
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -588,7 +588,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/valor_m2"
-        android:visibility="gone"
+        android:visibility="visible"
         android:background="@color/blanco">
         <LinearLayout
             android:layout_width="match_parent"
@@ -626,7 +626,7 @@
                     android:id="@+id/instalaciones"
                     android:layout_height="70dp"
                     android:background="@color/blanco"
-                    android:text="@string/texto21"
+                    android:text="@string/texto22"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
                     android:textColor="@color/negro"
@@ -644,7 +644,7 @@
                     android:id="@+id/años_construccion"
                     android:layout_height="70dp"
                     android:background="@color/blanco"
-                    android:text="@string/texto21"
+                    android:text="@string/texto23"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
                     android:textColor="@color/negro"
@@ -692,7 +692,7 @@
                     android:id="@+id/valor_condepreciacion"
                     android:layout_height="70dp"
                     android:background="@color/blanco"
-                    android:text="@string/texto21"
+                    android:text="@string/texto24"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
                     android:textColor="@color/negro"
@@ -720,6 +720,22 @@
                     android:layout_marginBottom="10dp"
                     android:inputType="number"/>
 
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+                <Button
+                    android:layout_width="150dp"
+                    android:id="@+id/calcularIsai"
+                    android:layout_height="40dp"
+                    android:background="@color/negro"
+                    android:text="@string/texto25"
+                    android:textSize="16dp"
+                    android:layout_margin="15dp"
+                    android:textColor="@color/blanco"
+                    android:gravity="center"
+                    android:layout_marginBottom="5dp"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

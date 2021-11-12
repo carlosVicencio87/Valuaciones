@@ -71,7 +71,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     private EditText area,areaConstruccion,niveles,años_construccion;
     private ImageView area_aprobada,cambiar_area,cambiar_area_construccion,area_construccion_aprobada,cambiar_nivel,niveles_aprobados,cambiar_tiempo,cambiar_tiempo_final;
     private String direccion;
-    private Button sigCalculo,sig_Calculo,sigPag,calcularPrecioConstr;
+    private Button sigCalculo,sig_Calculo,sigPag,calcularPrecioConstr,calcularIsai;
     private String calle,numeroAlcaldia, nombre_colonia,nombre_alcaldia,colonia_catastral,valor,cp,ciudad,pais;
     private Double areafinal,areaConsFinal,valorConstruccion,valor_muros,valor_materiales,valorMateriales,valor_pisos,valorPisos,
             valor_estruc,valor_estructura,valorAcabadosM,valor_cubiertas,valorCubiertas,valor_acabadosM,valorAcabadosP,valor_acabadosP,
@@ -185,6 +185,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         valor_condepreciacion=findViewById(R.id.valor_condepreciacion);
         caja_valor_real=findViewById(R.id.caja_valor_real);
         valor_real=findViewById(R.id.valor_real);
+        calcularIsai=findViewById(R.id.calcularIsai);
 
         setListaEstructura();
         setListaMateriales();
