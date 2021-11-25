@@ -31,6 +31,11 @@
     <string name="texto29">Acabados Ventanerias</string>
     <string name="texto30">Acabados Recubrimientos</string>
     <string name="texto31">Acabados Baños</string>
+    <string name="texto32">límite inferior del rango </string>
+    <string name="texto33">Rango</string>
+    <string name="texto34">factor de aplicación sobre el excedente del límite inferior</string>
+    <string name="texto35">cuota fija </string>
+    <string name="texto36">Valor ISAI $</string>
     <string name="title_activity_mapa">Map</string>
 
 
