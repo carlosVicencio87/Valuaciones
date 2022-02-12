@@ -111,7 +111,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     private AdapterTipoEstructura adapterTipoEstructura;
     private AdapterMaterialesMuros adapterMaterialesMuros;
     private AdapterEntrepisos adapterEntrepisos;
-    private AdapterCubiertas adapterCubiertas;
+    private AdapterCubiertas adapterCubierta;
     private AdapterAcabadosMuros adapterAcabadosMuros;
     private AdapterAcabadosPisos adapterAcabadosPisos;
     private AdapterAcabadosFachadas adapterAcabadosFachadas;
@@ -281,8 +281,8 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         entrepisos.setAdapter(adapterEntrepisos);
 
 
-        adapterCubiertas = new AdapterCubiertas(activity,R.layout.tipo_cubiertas,listaCubiertas,getResources());
-        cubiertas.setAdapter(adapterCubiertas);
+        adapterCubierta = new AdapterCubiertas(activity,R.layout.tipo_cubiertas,listaCubiertas,getResources());
+        cubiertas.setAdapter(adapterCubierta);
 
         adapterAcabadosMuros = new AdapterAcabadosMuros(activity,R.layout.acabados_muros,listaAcabadosMuros,getResources());
         acabados_muros.setAdapter(adapterAcabadosMuros);

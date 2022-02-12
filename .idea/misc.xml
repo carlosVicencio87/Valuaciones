@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/acabados_banos.xml" value="0.3390625" />
+        <entry key="app/src/main/res/layout/acabados_muros.xml" value="0.3390625" />
         <entry key="app/src/main/res/layout/activity_mapa.xml" value="0.25" />
       </map>
     </option>
