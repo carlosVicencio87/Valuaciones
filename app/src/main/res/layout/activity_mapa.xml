@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/mapaid"
-        android:visibility="gone">
+        android:visibility="visible">
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -18,6 +18,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/fondo_registro"
         android:visibility="gone"
         android:id="@+id/val_tierra">
         <LinearLayout
@@ -26,37 +27,52 @@
             android:orientation="vertical"
             android:layout_margin="50dp"
             android:visibility="visible">
-        <LinearLayout
-            android:id="@+id/cajaEditararea"
+           <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:visibility="visible">
-            <EditText
-                android:id="@+id/area"
+            android:layout_height="35dp"
+            android:orientation="vertical"
+            android:gravity="left">
+            <TextView
+                android:layout_width="match_parent"
+                android:gravity="left"
+                android:textSize="25dp"
                 android:text="@string/texto9"
-                android:layout_width="200dp"
-                android:layout_height="70dp"
-                android:layout_margin="8dp"
                 android:textColor="@color/blanco"
-                android:background="@color/negro"
-                android:inputType="numberDecimal"
-                android:textSize="20dp"
-                android:gravity="center">
-            </EditText>
-            <ImageView
-                android:id="@+id/cambiar_area"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:background="@color/negro">
-            </ImageView>
-        </LinearLayout>
+                android:layout_height="30dp"
+                android:layout_marginRight="20dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cajaEditararea"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                android:background="@drawable/campo"
+                android:gravity="center"
+                android:visibility="visible">
+                <EditText
+                    android:id="@+id/area"
+                    android:layout_width="200dp"
+                    android:layout_height="70dp"
+                    android:layout_margin="8dp"
+                    android:textColor="@color/negro"
+                    android:inputType="numberDecimal"
+                    android:textSize="25dp"
+                    android:gravity="center">
+                </EditText>
+                <ImageView
+                    android:id="@+id/cambiar_area"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/palomita">
+                </ImageView>
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/cajaArea"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
                 android:orientation="horizontal"
+                android:background="@drawable/campo"
                 android:gravity="center"
                 android:visibility="gone"
                 >
@@ -65,9 +81,8 @@
                     android:layout_width="200dp"
                     android:layout_height="70dp"
                     android:layout_margin="8dp"
-                    android:textColor="@color/blanco"
+                    android:textColor="@color/negro"
                     android:hint="@string/texto9"
-                    android:background="@color/negro"
                     android:textSize="20dp"
                     android:gravity="center"
                     >
@@ -76,81 +91,127 @@
                     android:id="@+id/area_aprobada"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:background="@color/negro"
-                    >
+                    android:background="@drawable/palomita">
                 </ImageView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:gravity="left">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto42"
+                    android:textColor="@color/blanco"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                android:background="@drawable/campo"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/puntoPartida"
+                    android:layout_height="70dp"
+                    android:text="Direccion "
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    />
 
             </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
-        <TextView
-            android:layout_width="250dp"
-            android:id="@+id/puntoPartida"
-            android:layout_height="70dp"
-            android:background="@color/negro"
-            android:text="Direccion "
-            android:textSize="14dp"
-            android:layout_margin="30dp"
-            android:textColor="@color/blanco"
-            android:gravity="center"
-            android:layout_marginBottom="10dp"
-            />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:gravity="left">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto8"
+                    android:textColor="@color/blanco"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
 
-        </LinearLayout>
-
-         <LinearLayout
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:gravity="center">
-             <TextView
-                 android:layout_width="250dp"
-                 android:id="@+id/valTierra"
-                 android:layout_height="70dp"
-                 android:background="@color/negro"
-                 android:text="@string/texto8"
-                 android:textSize="14dp"
-                 android:layout_margin="30dp"
-                 android:textColor="@color/blanco"
-                 android:gravity="center"
-                 android:layout_marginBottom="10dp"
-                 />
-                    </LinearLayout>
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:gravity="center">
-
-               <TextView
-                   android:layout_width="250dp"
-                   android:id="@+id/val_total_tierra"
-                   android:layout_height="70dp"
-                   android:background="@color/negro"
-                   android:text="@string/texto10"
-                   android:textSize="14dp"
-                   android:layout_margin="30dp"
-                   android:textColor="@color/blanco"
-                   android:gravity="center"
-                   android:layout_marginBottom="10dp"
-                   />
-                    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                android:background="@drawable/campo"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/valTierra"
+                    android:layout_height="70dp"
+                    android:text="@string/texto8"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:gravity="left">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto10"
+                    android:textColor="@color/blanco"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                android:background="@drawable/campo"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/val_total_tierra"
+                    android:layout_height="70dp"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center">
-                <Button
-                android:layout_width="180dp"
-                android:id="@+id/sigCalculo"
-                android:layout_height="70dp"
-                android:background="@color/negro"
-                android:text="@string/texto7"
-                android:textSize="16dp"
-                android:layout_margin="15dp"
-                android:textColor="@color/blanco"
                 android:gravity="center"
-                android:layout_marginBottom="5dp"
-                />
+                android:layout_margin="10dp">
+                <Button
+                    android:layout_width="180dp"
+                    android:id="@+id/sigCalculo"
+                    android:layout_height="70dp"
+                    android:background="@drawable/campo"
+                    android:text="@string/texto7"
+                    android:textSize="16dp"
+                    android:layout_margin="15dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="5dp"
+
+                    />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
@@ -158,28 +219,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/valor_construccion"
-        android:visibility="gone">
+        android:background="@drawable/fondo_registro"
+        android:visibility="visible">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_margin="50dp"
+            android:layout_margin="40dp"
             android:visibility="visible">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto11"
+                    android:textColor="@color/negro"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/cajaAreaCons"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
                 android:orientation="horizontal"
+                android:background="@drawable/campo"
                 android:gravity="center"
                 android:visibility="visible">
                 <EditText
                     android:id="@+id/areaConstruccion"
-                    android:text="@string/texto11"
                     android:layout_width="200dp"
                     android:layout_height="70dp"
-                    android:layout_margin="8dp"
-                    android:textColor="@color/negro"
-                    android:background="@color/blanco"
+                    android:textColor="@color/blanco"
                     android:inputType="numberDecimal"
                     android:textSize="20dp"
                     android:gravity="center">
@@ -188,24 +263,24 @@
                     android:id="@+id/cambiar_area_construccion"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:background="@color/negro">
+                    android:background="@drawable/palomita">
                 </ImageView>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/cajaCons"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
                 android:orientation="horizontal"
+                android:background="@drawable/campo"
                 android:gravity="center"
                 android:visibility="gone">
                 <TextView
                     android:id="@+id/area_total_construccion"
                     android:layout_width="200dp"
                     android:layout_height="70dp"
-                    android:layout_margin="8dp"
-                    android:textColor="@color/blanco"
+
+                    android:textColor="@color/negro"
                     android:hint="@string/texto11"
-                    android:background="@color/negro"
                     android:textSize="20dp"
                     android:gravity="center">
                 </TextView>
@@ -213,18 +288,32 @@
                     android:id="@+id/area_construccion_aprobada"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:background="@color/negro">
+                    android:background="@drawable/palomita">
                 </ImageView>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto12"
+                    android:textColor="@color/blanco"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/campo"
                 android:gravity="center">
                 <Spinner
                     android:layout_width="250dp"
                     android:id="@+id/tipo_estructura"
                     android:layout_height="80dp"
-                    android:background="@color/blanco"
                     android:hint="@string/texto12"
                     android:textSize="30dp"
                     android:layout_margin="30dp"
@@ -234,31 +323,58 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto13"
+                    android:textColor="@color/blanco"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/campo"
                 android:gravity="center">
                 <Spinner
                     android:layout_width="250dp"
                     android:id="@+id/materiales_muros"
                     android:layout_height="70dp"
-                    android:background="@color/blanco"
                     android:text="@string/texto13"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
                     android:textColor="@color/negro"
                     android:gravity="center"
-                    android:layout_marginBottom="10dp"
-                    />
+                    android:layout_marginBottom="10dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto14"
+                    android:textColor="@color/blanco"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/campo"
                 android:gravity="center">
 
                 <Spinner
                     android:layout_width="250dp"
                     android:id="@+id/entrepisos"
                     android:layout_height="70dp"
-                    android:background="@color/blanco"
                     android:text="@string/texto14"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
@@ -269,18 +385,31 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto15"
+                    android:textColor="@color/blanco"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/campo"
                 android:gravity="center">
 
                 <Spinner
                     android:layout_width="250dp"
                     android:id="@+id/cubiertas"
                     android:layout_height="70dp"
-                    android:background="@color/blanco"
                     android:text="@string/texto15"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
-                    android:textColor="@color/negro"
                     android:gravity="center"
                     android:layout_marginBottom="10dp"
                     />
@@ -288,16 +417,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center">
+                android:gravity="center"
+                android:layout_margin="10dp">
                 <Button
                     android:layout_width="180dp"
                     android:id="@+id/sig_Calculo"
                     android:layout_height="70dp"
-                    android:background="@color/negro"
+                    android:background="@drawable/campo"
                     android:text="@string/texto7"
                     android:textSize="16dp"
                     android:layout_margin="15dp"
-                    android:textColor="@color/blanco"
+                    android:textColor="@color/negro"
                     android:gravity="center"
                     android:layout_marginBottom="5dp"
                     />
@@ -305,44 +435,70 @@
         </LinearLayout>
     </ScrollView>
     <ScrollView
+        android:id="@+id/valor_acabados"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/valor_acabados"
         android:visibility="gone"
-        android:background="@color/blanco">
+        android:background="@drawable/fondo_registro">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_margin="50dp"
-            android:visibility="visible"
-            android:background="@color/blanco">
+            android:layout_margin="40dp"
+            android:visibility="visible">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto26"
+                    android:textColor="@color/blanco"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/campo"
                 android:gravity="center">
                 <Spinner
                     android:layout_width="250dp"
                     android:id="@+id/acabados_muros"
                     android:layout_height="80dp"
-                    android:background="@color/blanco"
                     android:hint="@string/texto12"
                     android:textSize="30dp"
                     android:layout_margin="30dp"
                     android:textColor="@color/negro"
                     android:gravity="center"
-                    android:layout_marginBottom="10dp"
-                    />
+                    android:layout_marginBottom="10dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto27"
+                    android:textColor="@color/blanco"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/campo"
                 android:gravity="center">
                 <Spinner
                     android:layout_width="250dp"
                     android:id="@+id/acabados_pisos"
                     android:layout_height="70dp"
-                    android:background="@color/blanco"
                     android:text="@string/texto13"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
@@ -353,14 +509,27 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto26"
+                    android:textColor="@color/blanco"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/campo"
                 android:gravity="center">
-
                 <Spinner
                     android:layout_width="250dp"
                     android:id="@+id/acabados_fachadas"
                     android:layout_height="70dp"
-                    android:background="@color/blanco"
                     android:text="@string/texto14"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
@@ -371,31 +540,57 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto29"
+                    android:textColor="@color/blanco"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/campo"
                 android:gravity="center">
-
                 <Spinner
                     android:layout_width="250dp"
                     android:id="@+id/acabados_ventaneria"
                     android:layout_height="70dp"
-                    android:background="@color/blanco"
                     android:text="@string/texto15"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
                     android:textColor="@color/negro"
                     android:gravity="center"
-                    android:layout_marginBottom="10dp"
-                    />
+                    android:layout_marginBottom="10dp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto30"
+                    android:textColor="@color/blanco"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/campo"
                 android:gravity="center">
                 <Spinner
                     android:layout_width="250dp"
                     android:id="@+id/acabados_recubrimiento"
                     android:layout_height="70dp"
-                    android:background="@color/blanco"
                     android:text="@string/texto15"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
@@ -406,13 +601,27 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto31"
+                    android:textColor="@color/blanco"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/campo"
                 android:gravity="center">
                 <Spinner
                     android:layout_width="250dp"
                     android:id="@+id/acabadosbanos"
                     android:layout_height="70dp"
-                    android:background="@color/blanco"
                     android:text="@string/texto15"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
@@ -424,16 +633,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center">
+                android:gravity="center"
+                android:layout_margin="10dp">
                 <Button
-                    android:layout_width="150dp"
+                    android:layout_width="180dp"
                     android:id="@+id/sigPag"
-                    android:layout_height="40dp"
-                    android:background="@color/negro"
+                    android:layout_height="70dp"
+                    android:background="@drawable/campo"
                     android:text="@string/texto7"
                     android:textSize="16dp"
                     android:layout_margin="15dp"
-                    android:textColor="@color/blanco"
+                    android:textColor="@color/negro"
                     android:gravity="center"
                     android:layout_marginBottom="5dp"
                     />
@@ -442,33 +652,46 @@
 
     </ScrollView>
     <ScrollView
+        android:id="@+id/valor_puntos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/valor_puntos"
         android:visibility="gone"
-        android:background="@color/blanco">
+        android:background="@drawable/fondo_registro">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_margin="50dp"
-            android:visibility="visible"
-            android:background="@color/blanco">
+            android:layout_margin="40dp"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto17"
+                    android:textColor="@color/negro"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/cajaEditNiveles"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
                 android:orientation="horizontal"
+                android:background="@drawable/campo"
                 android:gravity="center"
                 android:visibility="visible">
                 <EditText
                     android:id="@+id/niveles"
-                    android:text="@string/texto17"
                     android:layout_width="220dp"
                     android:layout_height="70dp"
                     android:layout_margin="8dp"
                     android:textColor="@color/negro"
-                    android:background="@color/blanco"
                     android:inputType="numberDecimal"
                     android:textSize="12dp"
                     android:gravity="center">
@@ -477,14 +700,15 @@
                     android:id="@+id/cambiar_nivel"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:background="@color/negro">
+                    android:background="@drawable/palomita">
                 </ImageView>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/cajaNiveles"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
                 android:orientation="horizontal"
+                android:background="@drawable/campo"
                 android:gravity="center"
                 android:visibility="gone"
                 >
@@ -495,7 +719,6 @@
                     android:layout_margin="8dp"
                     android:textColor="@color/negro"
                     android:hint="@string/texto9"
-                    android:background="@color/blanco"
                     android:textSize="20dp"
                     android:gravity="center"
                     >
@@ -504,21 +727,34 @@
                     android:id="@+id/niveles_aprobados"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:background="@drawable/aprobado"
-                    >
+                    android:background="@drawable/palomita">
                 </ImageView>
-
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="15dp"
+                    android:text="@string/texto16"
+                    android:textColor="@color/blanco"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                android:background="@drawable/campo"
+                android:gravity="center"
+                android:visibility="visible">
                 <TextView
                     android:layout_width="250dp"
                     android:id="@+id/puntos_matriz"
                     android:layout_height="70dp"
-                    android:background="@color/blanco"
-                    android:text="@string/texto16"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
                     android:textColor="@color/negro"
@@ -528,15 +764,29 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto18"
+                    android:textColor="@color/blanco"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                android:background="@drawable/campo"
+                android:gravity="center"
+                android:visibility="visible">
                 <TextView
                     android:layout_width="250dp"
                     android:id="@+id/clase"
                     android:layout_height="70dp"
-                    android:background="@color/blanco"
-                    android:text="@string/texto18"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
                     android:textColor="@color/negro"
@@ -546,71 +796,96 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto19"
+                    android:textColor="@color/blanco"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                android:background="@drawable/campo"
+                android:gravity="center"
+                android:visibility="visible">
 
                 <TextView
                     android:layout_width="250dp"
                     android:id="@+id/valor_unitario"
                     android:layout_height="70dp"
-                    android:background="@color/blanco"
-                    android:text="@string/texto19"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
                     android:textColor="@color/negro"
                     android:gravity="center"
-                    android:layout_marginBottom="10dp"
-                    />
+                    android:layout_marginBottom="10dp" />
             </LinearLayout>
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center">
+                android:gravity="center"
+                android:layout_margin="10dp">
                 <Button
-                    android:layout_width="150dp"
+                    android:layout_width="180dp"
                     android:id="@+id/calcularPrecioConstr"
-                    android:layout_height="40dp"
-                    android:background="@color/negro"
-                    android:text="@string/texto20"
+                    android:layout_height="70dp"
+                    android:background="@drawable/campo"
+                    android:text="@string/texto7"
                     android:textSize="16dp"
                     android:layout_margin="15dp"
-                    android:textColor="@color/blanco"
+                    android:textColor="@color/negro"
                     android:gravity="center"
                     android:layout_marginBottom="5dp"
                     />
             </LinearLayout>
         </LinearLayout>
-
     </ScrollView>
     <ScrollView
+        android:id="@+id/valor_m2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/valor_m2"
-        android:visibility="visible"
-        android:background="@color/blanco">
+        android:visibility="gone"
+        android:background="@drawable/fondo_registro">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-           >
+            android:orientation="vertical"
+            android:layout_margin="40dp"
+            android:visibility="visible">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-                LinearLayout
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto21"
+                    android:textColor="@color/blanco"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                android:background="@drawable/campo"
+                android:gravity="center"
+                android:visibility="visible">
 
                 <TextView
                     android:layout_width="250dp"
                     android:id="@+id/valor_dinero_m2"
                     android:layout_height="70dp"
-                    android:background="@color/blanco"
-                    android:text="@string/texto21"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
                     android:textColor="@color/negro"
@@ -619,14 +894,29 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto22"
+                    android:textColor="@color/blanco"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                android:background="@drawable/campo"
+                android:gravity="center"
+                android:visibility="visible">
                 <TextView
                     android:layout_width="250dp"
                     android:id="@+id/instalaciones"
                     android:layout_height="70dp"
-                    android:background="@color/blanco"
-                    android:text="@string/texto22"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
                     android:textColor="@color/negro"
@@ -634,17 +924,32 @@
                     android:layout_marginBottom="10dp" />
             </LinearLayout>
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:background="@color/blanco"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto23"
+                    android:textColor="@color/negro"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
                 android:id="@+id/caja_años"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                android:background="@drawable/campo"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:visibility="visible">
                 <EditText
                     android:layout_width="250dp"
                     android:id="@+id/años_construccion"
                     android:layout_height="70dp"
-                    android:background="@color/blanco"
-                    android:text="@string/texto23"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
                     android:textColor="@color/negro"
@@ -655,20 +960,21 @@
                     android:id="@+id/cambiar_tiempo"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:background="@color/negro"/>
+                    android:background="@drawable/palomita"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/caja_años_final"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
+                android:layout_height="70dp"
                 android:orientation="horizontal"
+                android:background="@drawable/campo"
+                android:gravity="center"
                 android:visibility="gone">
                 <TextView
                     android:layout_width="250dp"
                     android:id="@+id/años_construccion_final"
                     android:layout_height="70dp"
-                    android:background="@color/blanco"
+
                     android:text="@string/texto21"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
@@ -679,20 +985,33 @@
                     android:id="@+id/cambiar_tiempo_final"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:background="@color/negro"/>
+                    android:background="@drawable/palomita"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto24"
+                    android:textColor="@color/blanco"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/caja_valor_depreciacion"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                android:background="@drawable/campo"
+                android:gravity="center">
                 <TextView
                     android:layout_width="250dp"
                     android:id="@+id/valor_condepreciacion"
                     android:layout_height="70dp"
-                    android:background="@color/blanco"
-                    android:text="@string/texto24"
                     android:textSize="14dp"
                     android:layout_margin="30dp"
                     android:textColor="@color/negro"
@@ -702,14 +1021,357 @@
 
             </LinearLayout>
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="left"
+                    android:textSize="20dp"
+                    android:text="@string/texto21"
+                    android:textColor="@color/negro"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
                 android:id="@+id/caja_valor_real"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                android:background="@drawable/campo"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/valor_real"
+                    android:layout_height="70dp"
+
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:inputType="number"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_margin="10dp">
+                <Button
+                    android:layout_width="180dp"
+                    android:id="@+id/calcularIsai"
+                    android:layout_height="70dp"
+                    android:background="@drawable/campo"
+                    android:text="@string/texto7"
+                    android:textSize="16dp"
+                    android:layout_margin="15dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="5dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrolIsai"
+        android:visibility="visible"
+        android:background="@color/blanco">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:orientation="vertical"
+                android:background="@color/blanco"
+                android:gravity="left">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:background="@color/blanco"
+                    android:gravity="left"
+                    android:textSize="15dp"
+                    android:text="@string/texto39"
+                    android:textColor="@color/negro"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+                LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/precio_otravez"
+                    android:layout_height="70dp"
+                    android:background="@color/blanco"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:orientation="vertical"
+                android:background="@color/blanco"
+                android:gravity="left">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:background="@color/blanco"
+                    android:gravity="left"
+                    android:textSize="15dp"
+                    android:text="@string/texto33"
+                    android:textColor="@color/negro"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/rango_tex"
+                    android:layout_height="70dp"
+                    android:background="@color/blanco"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:orientation="vertical"
+                android:background="@color/blanco"
+                android:gravity="left">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:background="@color/blanco"
+                    android:gravity="left"
+                    android:textSize="15dp"
+                    android:text="@string/texto32"
+                    android:textColor="@color/negro"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/límite_inferior_del_rango"
+                    android:layout_height="70dp"
+                    android:background="@color/blanco"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:orientation="vertical"
+                android:background="@color/blanco"
+                android:gravity="left">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:background="@color/blanco"
+                    android:gravity="left"
+                    android:textSize="15dp"
+                    android:text="@string/texto34"
+                    android:textColor="@color/negro"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/caja_límite_inferior"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="250dp"
-                    android:id="@+id/valor_real"
+                    android:id="@+id/porcentaje_limite_inferior"
+                    android:layout_height="70dp"
+                    android:background="@color/blanco"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:inputType="number"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:orientation="vertical"
+                android:background="@color/blanco"
+                android:gravity="left">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:background="@color/blanco"
+                    android:gravity="left"
+                    android:textSize="15dp"
+                    android:text="@string/texto35"
+                    android:textColor="@color/negro"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="20dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/caja_cuota_fija"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/cuota_fija"
+                    android:layout_height="70dp"
+                    android:background="@color/blanco"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:inputType="number"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:orientation="vertical"
+                android:background="@color/blanco"
+                android:gravity="left">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:background="@color/blanco"
+                    android:gravity="left"
+                    android:textSize="15dp"
+                    android:text="@string/texto36"
+                    android:textColor="@color/negro"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/caja_valor_isai"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/valor_isai_1"
+                    android:layout_height="70dp"
+                    android:background="@color/blanco"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:inputType="number"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:orientation="vertical"
+                android:background="@color/blanco"
+                android:gravity="left">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:background="@color/blanco"
+                    android:gravity="left"
+                    android:textSize="15dp"
+                    android:text="@string/texto37"
+                    android:textColor="@color/negro"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/caja_valor_isaiIncluido"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/valor_isaiIncluido"
+                    android:layout_height="70dp"
+                    android:background="@color/blanco"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:inputType="number"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="vertical"
+                android:background="@color/blanco"
+                android:gravity="left">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:background="@color/blanco"
+                    android:gravity="left"
+                    android:textSize="15dp"
+                    android:text="@string/texto38"
+                    android:textColor="@color/negro"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/caja_valor_utilidad"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <EditText
+                    android:layout_width="250dp"
+                    android:id="@+id/porcenta_utilidad_new"
+                    android:layout_height="70dp"
+                    android:background="@color/blanco"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:inputType="number"/>
+                <ImageView
+                    android:id="@+id/marcar_utilidad"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@color/negro"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/porcenta_utilidad_final"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/utilidad_fijada"
                     android:layout_height="70dp"
                     android:background="@color/blanco"
                     android:text="@string/texto21"
@@ -717,9 +1379,48 @@
                     android:layout_margin="30dp"
                     android:textColor="@color/negro"
                     android:gravity="center"
+                    android:layout_marginBottom="10dp"/>
+                <ImageView
+                    android:id="@+id/cambiar_utilidad"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@color/negro"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:orientation="vertical"
+                android:background="@color/blanco"
+                android:gravity="left">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:background="@color/blanco"
+                    android:gravity="left"
+                    android:textSize="15dp"
+                    android:text="@string/texto41"
+                    android:textColor="@color/negro"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="20dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/caja_valor_conUtilidad"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="250dp"
+                    android:id="@+id/valor_conUtilidad"
+                    android:layout_height="70dp"
+                    android:background="@color/blanco"
+                    android:textSize="14dp"
+                    android:layout_margin="30dp"
+                    android:textColor="@color/negro"
+                    android:gravity="center"
                     android:layout_marginBottom="10dp"
                     android:inputType="number"/>
-
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -727,10 +1428,10 @@
                 android:gravity="center">
                 <Button
                     android:layout_width="150dp"
-                    android:id="@+id/calcularIsai"
+                    android:id="@+id/finalizar_val"
                     android:layout_height="40dp"
                     android:background="@color/negro"
-                    android:text="@string/texto25"
+                    android:text="@string/texto40"
                     android:textSize="16dp"
                     android:layout_margin="15dp"
                     android:textColor="@color/blanco"
@@ -740,6 +1441,7 @@
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
+
 
 
 
