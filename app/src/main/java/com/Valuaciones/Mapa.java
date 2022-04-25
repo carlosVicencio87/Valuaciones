@@ -67,7 +67,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     private LocationManager locationManager;
     private double latitud,longitud,latUpdate,longUpdate;
     private TextView puntoPartida,valTierra,area_total,val_total_tierra,area_total_construccion,niveles_total,puntos_matriz,clase,
-            valor_unitario,valor_dinero_m2,instalaciones,años_construccion_final,valor_condepreciacion,valor_real,límite_inferior_del_rango,precio_otravez;
+            valor_unitario,valor_dinero_m2,instalaciones,años_construccion_final,valor_condepreciacion,valor_real;
     private EditText area,areaConstruccion,niveles,años_construccion;
     private ImageView area_aprobada,cambiar_area,cambiar_area_construccion,area_construccion_aprobada,cambiar_nivel,niveles_aprobados,cambiar_tiempo,cambiar_tiempo_final;
     private String direccion;
@@ -82,7 +82,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     private Marker marker;
     private LinearLayout mapaid,cajaEditararea,cajaArea,cajaAreaCons,cajaCons,cajaEditNiveles,cajaNiveles,caja_años,
             caja_años_final,caja_valor_depreciacion,caja_valor_real;
-    private ScrollView valor_construccion,val_tierra,valor_acabados,valor_puntos,valor_m2,scrolIsai;
+    private ScrollView valor_construccion,val_tierra,valor_acabados,valor_puntos,valor_m2;
     private Fragment map;
     private int check=0;
     private static String SERVIDOR_CONTROLADOR;
@@ -111,7 +111,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     private AdapterTipoEstructura adapterTipoEstructura;
     private AdapterMaterialesMuros adapterMaterialesMuros;
     private AdapterEntrepisos adapterEntrepisos;
-    private AdapterCubiertas adapterCubierta;
+    private AdapterCubiertas adapterCubiertas;
     private AdapterAcabadosMuros adapterAcabadosMuros;
     private AdapterAcabadosPisos adapterAcabadosPisos;
     private AdapterAcabadosFachadas adapterAcabadosFachadas;
@@ -186,9 +186,6 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         caja_valor_real=findViewById(R.id.caja_valor_real);
         valor_real=findViewById(R.id.valor_real);
         calcularIsai=findViewById(R.id.calcularIsai);
-        límite_inferior_del_rango=findViewById(R.id.límite_inferior_del_rango);
-        scrolIsai=findViewById(R.id.scrolIsai);
-        precio_otravez=findViewById(R.id.precio_otravez);
 
         setListaEstructura();
         setListaMateriales();
@@ -281,8 +278,8 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         entrepisos.setAdapter(adapterEntrepisos);
 
 
-        adapterCubierta = new AdapterCubiertas(activity,R.layout.tipo_cubiertas,listaCubiertas,getResources());
-        cubiertas.setAdapter(adapterCubierta);
+        adapterCubiertas = new AdapterCubiertas(activity,R.layout.tipo_cubiertas,listaCubiertas,getResources());
+        cubiertas.setAdapter(adapterCubiertas);
 
         adapterAcabadosMuros = new AdapterAcabadosMuros(activity,R.layout.acabados_muros,listaAcabadosMuros,getResources());
         acabados_muros.setAdapter(adapterAcabadosMuros);

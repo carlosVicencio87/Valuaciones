@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo"
+    tools:context=".Registro">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fondo_registro"
+        android:layout_marginBottom="20dp"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingHorizontal="34dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/fondo"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Registro"
+                    android:textSize="22dp"
+                    android:gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/blanco"/>
+
+                <EditText
+                    android:id="@+id/nombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nombre"
+                    android:textColor="@color/blanco"
+                    android:textColorHint="@color/blanco"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:hint="El nombre solo puede contener letras."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blanco"
+                    android:textColorHint="@color/blanco"
+                    android:textSize="18sp"
+                    android:layout_marginVertical="7dp"
+                    android:visibility="gone"
+                    android:id="@+id/mensajeNombre"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gris"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/apellidos"
+                    android:hint="Apellidos"
+                    android:textSize="18sp"
+                    android:textColorHint="@color/blanco"
+                    android:textColor="@color/blanco"/>
+
+                <TextView
+                    android:hint="Los apellidos solo puede contener letras."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blanco"
+                    android:textColorHint="@color/blanco"
+                    android:textSize="18sp"
+                    android:layout_marginVertical="7dp"
+                    android:visibility="gone"
+                    android:id="@+id/mensajeApellido"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gris"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/telefono"
+                    android:hint="Teléfono"
+                    android:textSize="18sp"
+                    android:inputType="phone"
+                    android:textColorHint="@color/blanco"
+                    android:textColor="@color/blanco"/>
+                <TextView
+                    android:hint="El telefono solo puede contener numeros."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blanco"
+                    android:textColorHint="@color/blanco"
+                    android:textSize="18sp"
+                    android:layout_marginVertical="7dp"
+                    android:visibility="gone"
+                    android:id="@+id/mensajetelefono"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gris"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/confirmarTel"
+                    android:hint="Confirmar teléfono"
+                    android:textSize="18sp"
+                    android:inputType="phone"
+                    android:textColorHint="@color/blanco"
+                    android:textColor="@color/blanco"/>
+                <TextView
+                    android:hint="El telefono solo puede contener numeros."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blanco"
+                    android:textColorHint="@color/blanco"
+                    android:textSize="18sp"
+                    android:layout_marginVertical="7dp"
+                    android:visibility="gone"
+                    android:id="@+id/mensajeconfirmartel"/>
+                <TextView
+                    android:hint="Los telefonos no coinciden."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blanco"
+                    android:textColorHint="@color/blanco"
+                    android:textSize="18sp"
+                    android:layout_marginVertical="7dp"
+                    android:visibility="gone"
+                    android:id="@+id/mensajeteligual"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gris"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pin"
+                    android:hint="PIN"
+                    android:textSize="18sp"
+                    android:inputType="numberPassword"
+                    android:textColorHint="@color/blanco"
+                    android:textColor="@color/blanco"/>
+                <TextView
+                    android:hint="El telefono solo puede contener numeros."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blanco"
+                    android:textColorHint="@color/blanco"
+                    android:textSize="18sp"
+                    android:layout_marginVertical="7dp"
+                    android:visibility="gone"
+                    android:id="@+id/mensajepin"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gris"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/confirmarPin"
+                    android:hint="Confirmar PIN"
+                    android:textSize="18sp"
+                    android:textColorHint="@color/blanco"
+                    android:inputType="numberPassword"
+                    android:textColor="@color/blanco"/>
+                <TextView
+                    android:hint="Los PIN no coinciden."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blanco"
+                    android:textColorHint="@color/blanco"
+                    android:textSize="18sp"
+                    android:layout_marginVertical="7dp"
+                    android:visibility="gone"
+                    android:id="@+id/mensajeConPin"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gris"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/email"
+                    android:hint="Email"
+                    android:textSize="18sp"
+                    android:inputType="textEmailAddress"
+                    android:textColorHint="@color/blanco"
+                    android:textColor="@color/blanco"/>
+                <TextView
+                    android:hint="Introduzca un correo valido."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blanco"
+                    android:textColorHint="@color/blanco"
+                    android:textSize="18sp"
+                    android:layout_marginVertical="7dp"
+                    android:visibility="gone"
+                    android:id="@+id/mensajeEmail"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gris"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gris"/>
+                <TextView
+                    android:layout_width="180dp"
+                    android:id="@+id/telefonosRegistrado"
+                    android:layout_height="70dp"
+                    android:text="El numero ya esta registrado ..."
+                    android:textSize="20dp"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/blanco"
+                    android:gravity="center"
+                    android:visibility="gone"/>
+                <TextView
+                    android:layout_width="180dp"
+                    android:id="@+id/mensaje"
+                    android:layout_height="70dp"
+                    android:text="Enviando registro ..."
+                    android:textSize="25dp"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/blanco"
+                    android:gravity="center"
+                    android:visibility="gone"/>
+                <TextView
+                    android:layout_width="180dp"
+                    android:id="@+id/registrar"
+                    android:layout_height="70dp"
+                    android:text="Registrar"
+                    android:textSize="25dp"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/blanco"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

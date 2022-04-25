@@ -19,8 +19,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ActivarPermisos"></activity>
+        <activity android:name=".Registro"></activity>
+        <activity android:name=".Login">
 
+
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
+        </activity>
+        <activity android:name=".ActivarPermisos" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -35,14 +46,7 @@
 
         <activity
             android:name=".Mapa"
-            android:label="@string/title_activity_mapa">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+            android:label="@string/title_activity_mapa" ></activity>
         <activity android:name=".ValuacionPrincipal" />
         <activity android:name=".Principal" />
         <activity android:name=".MainActivity" />
