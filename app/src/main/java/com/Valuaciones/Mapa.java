@@ -1,5 +1,6 @@
 package com.Valuaciones;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -23,6 +24,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -60,6 +62,12 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.maps.android.SphericalUtil;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Polygon;
+import java.util.List;
 public class Mapa extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -67,7 +75,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     private LocationManager locationManager;
     private double latitud,longitud,latUpdate,longUpdate;
     private TextView puntoPartida,valTierra,area_total,val_total_tierra,area_total_construccion,niveles_total,puntos_matriz,clase,
-            valor_unitario,valor_dinero_m2,instalaciones,años_construccion_final,valor_condepreciacion,valor_real;
+            valor_unitario,valor_dinero_m2,instalaciones,años_construccion_final,valor_condepreciacion,valor_real,ingresar_val_form,borrar_linea,msj_mapa,aceptar_poligono;
     private EditText area,areaConstruccion,niveles,años_construccion;
     private ImageView area_aprobada,cambiar_area,cambiar_area_construccion,area_construccion_aprobada,cambiar_nivel,niveles_aprobados,cambiar_tiempo,cambiar_tiempo_final;
     private String direccion;
@@ -80,8 +88,9 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
             ,valor_depreciacion, valor_de_depreciacion,valor_con_depreciacion;
     private LatLng coord,coordenadas,latLong;
     private Marker marker;
-    private LinearLayout mapaid,cajaEditararea,cajaArea,cajaAreaCons,cajaCons,cajaEditNiveles,cajaNiveles,caja_años,
-            caja_años_final,caja_valor_depreciacion,caja_valor_real;
+    private LinearLayout cajaEditararea,cajaArea,cajaAreaCons,cajaCons,cajaEditNiveles,cajaNiveles,caja_años,
+            caja_años_final,caja_valor_depreciacion,caja_valor_real,div_poligono;
+    private ConstraintLayout mapaid;
     private ScrollView valor_construccion,val_tierra,valor_acabados,valor_puntos,valor_m2;
     private Fragment map;
     private int check=0;
@@ -118,6 +127,14 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     private AdapterAcabadosVentaneria adapterAcabadosVentaneria;
     private AdapterAcabadosRecubrimientos adapterAcabadosRecubrimientos;
     private AdapterAcabadosBanos adapterAcabadosBanos;
+    private List<LatLng> polygonPoints = new ArrayList<>();
+    private Polygon polygon;
+    private CheckBox check_numero_area,check_dibujar_poligono;
+    private GoogleMap.OnMapClickListener locationClickListener;
+    private GoogleMap.OnMapClickListener drawPolygonClickListener;
+    private List<Marker> markers = new ArrayList<>();
+
+    double area_poligono;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -186,7 +203,13 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         caja_valor_real=findViewById(R.id.caja_valor_real);
         valor_real=findViewById(R.id.valor_real);
         calcularIsai=findViewById(R.id.calcularIsai);
-
+        ingresar_val_form=findViewById(R.id.ingresar_val_form);
+        check_numero_area=findViewById(R.id.check_numero_area);
+        check_dibujar_poligono=findViewById(R.id.check_dibujar_poligono);
+        div_poligono=findViewById(R.id.div_poligono);
+        borrar_linea=findViewById(R.id.borrar_linea);
+        msj_mapa=findViewById(R.id.msj_mapa);
+        aceptar_poligono=findViewById(R.id.aceptar_poligono);
         setListaEstructura();
         setListaMateriales();
         setListaEntrepisos();
@@ -207,6 +230,19 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         sharedPreferences=getSharedPreferences("datos_catastrales",this.MODE_PRIVATE);
         editor=sharedPreferences.edit();
         executorService= Executors.newSingleThreadExecutor();
+
+        ingresar_val_form.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mapaid.setVisibility(View.GONE);
+                val_tierra.setVisibility(View.VISIBLE);
+                valTierra.setVisibility(View.VISIBLE);
+                executorService.execute(() -> {
+                    buscar_precio();
+                    Log.e("tarea", "y esto igual");
+                });
+            }
+        });
         cambiar_area.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -219,6 +255,8 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 Log.e("res",""+area.getText().toString());
                 Log.e("12",""+valorTotalTerreno);
                 Double valor_1=Double.parseDouble(area.getText().toString());
+                valorTotalTerreno = valorTotalTerreno.replace(",", "");
+                // Convertir el String a Double
                 Double valor_2 = Double.parseDouble(valorTotalTerreno);
                 Double total = valor_1*valor_2;
                 Log.e("total_area",total+"");
@@ -299,6 +337,71 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         adapterAcabadosBanos = new AdapterAcabadosBanos(activity,R.layout.acabados_banos,listaAcabadosBanos,getResources());
         acabadosbanos.setAdapter(adapterAcabadosBanos);
 
+        check_dibujar_poligono.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                check_box_are();
+                check_dibujar_poligono.setChecked(true);
+                mapaid.setVisibility(View.VISIBLE);
+                val_tierra.setVisibility(View.GONE);
+                valTierra.setVisibility(View.GONE);
+                ingresar_val_form.setVisibility(View.GONE);
+                div_poligono.setVisibility(View.VISIBLE);
+                msj_mapa.setText("El calculo del area del poligno es un aproximado proporcionado por google maps");
+                // Cambiar el listener de clic en el mapa para el dibujo del polígono
+                mMap.setOnMapClickListener(drawPolygonClickListener);
+            }
+        });
+        aceptar_poligono.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                valorTotalTerreno = valorTotalTerreno.replace(",", "");
+                // Convertir el String a Double
+                Double valor_2 = Double.parseDouble(valorTotalTerreno);
+
+                Double total = area_poligono*valor_2;
+                Log.e("area_poligono",area_poligono+"");
+                Log.e("valorTotalTerreno",valorTotalTerreno+"");
+
+                Log.e("total_area",total+"");
+                val_total_tierra.setText("$"+total);
+                mapaid.setVisibility(View.GONE);
+                val_tierra.setVisibility(View.VISIBLE);
+                valTierra.setVisibility(View.VISIBLE);
+                ingresar_val_form.setVisibility(View.VISIBLE);
+                div_poligono.setVisibility(View.GONE);
+                cajaArea.setVisibility(View.VISIBLE);
+                cajaEditararea.setVisibility(View.GONE);
+                area_total.setText(area_poligono+ "m2");
+            }
+        });
+        check_numero_area.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                check_box_are();
+                check_numero_area.setChecked(true);
+                area_total.setText("");
+                cajaArea.setVisibility(View.GONE);
+
+                cajaEditararea.setVisibility(View.VISIBLE);
+            }
+        });
+        borrar_linea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!polygonPoints.isEmpty()) {
+                    // Eliminar el último punto del polígono
+                    polygonPoints.remove(polygonPoints.size() - 1);
+                    // Eliminar el último marcador del mapa y de la lista de marcadores
+                    if (!markers.isEmpty()) {
+                        markers.get(markers.size() - 1).remove();
+                        markers.remove(markers.size() - 1);
+                    }
+                    // Redibujar el polígono
+                    drawPolygon();
+                }
+            }
+        });
         tipo_estructura.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -2120,7 +2223,11 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
             public void onClick(View v) {
                 valor_acabados.setVisibility(View.GONE);
                 valor_puntos.setVisibility(View.VISIBLE);
+                Log.e("valorFachadas",""+valorFachadas);
+                Log.e("valorVentanerias",""+valorVentanerias);
+                Log.e("valorRecubrimiento",""+valorRecubrimiento);
                 Log.e("baños valor",""+valorBanos);
+
                 Log.e("cadena total",""+valor_estruc+valorMateriales+valorPisos+valorCubiertas+valorAcabadosM+valorAcabadosP+valorFachadas+valorVentanerias+valorRecubrimiento+valorBanos);
                 valor_total_matriz=valor_estruc+valorMateriales+valorPisos+valorCubiertas+valorAcabadosM+valorAcabadosP+valorFachadas+valorVentanerias+valorRecubrimiento+valorBanos;
                 Log.e("VALOR MATRIZ",valor_total_matriz+"");
@@ -2356,33 +2463,42 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        // Configurar la ubicación inicial
         miLatLong();
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                Log.e("sirve","sirve");
-                mapaid.setVisibility(View.GONE);
-                val_tierra.setVisibility(View.VISIBLE);
-                valTierra.setVisibility(View.VISIBLE);
-                executorService.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        buscar_precio();
-                        Log.e("tarea","y esto igual");
-                    }
-                });
-                return false;
+
+        // Inicializar el listener de clic para la ubicación
+        locationClickListener = latLng -> {
+            // Actualizar ubicación y marcador
+            actualizarUbicacion(new Location("") {{
+                setLatitude(latLng.latitude);
+                setLongitude(latLng.longitude);
+            }});
+        };
+
+        // Inicializar el listener de clic para el dibujo del polígono
+        drawPolygonClickListener = latLng -> {
+            // Añadir el punto a la lista de puntos del polígono
+            polygonPoints.add(latLng);
+            drawPolygon();
+
+            // Calcular y mostrar el área del polígono
+            if (polygonPoints.size() > 2) {
+                area_poligono = calculateArea(polygon);
+                Log.e("Área del polígono: " , String.valueOf(area));
             }
-        });
+        };
+
+        // Configurar el listener inicial para la ubicación
+        mMap.setOnMapClickListener(locationClickListener);
     }
+
+
     private void solicitarPermisoLocation() {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
@@ -2408,7 +2524,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
         actualizarUbicacion(location);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 30000, 5, locationListener);
+       // locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 30000, 5, locationListener);
     }
     private void actualizarUbicacion(Location location) {
         if (location != null) {
@@ -2416,24 +2532,24 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
             longitud = location.getLongitude();
             agregarMarcadorUbicacion(latitud, longitud);
             direccion = darDireccion(this, latitud, longitud);
-            LatLng coord = new LatLng(latitud,longitud);
-            String[] direccion_fragmentada=direccion.split(",");
-            for (int i=0;i<direccion_fragmentada.length;i++){
-                Log.e("direccion_fragmentada",direccion_fragmentada[i]);
+            LatLng coord = new LatLng(latitud, longitud);
+            String[] direccion_fragmentada = direccion.split(",");
+            for (int i = 0; i < direccion_fragmentada.length; i++) {
+                Log.e("direccion_fragmentada", direccion_fragmentada[i]);
             }
-            calle=direccion_fragmentada[0].toUpperCase();
-            nombre_colonia=direccion_fragmentada[1].toUpperCase().trim();
-            nombre_alcaldia=direccion_fragmentada[2].toUpperCase().trim();
-            cp=direccion_fragmentada[3].toUpperCase();
-            ciudad=direccion_fragmentada[4].toUpperCase();
-            pais=direccion_fragmentada[5].toUpperCase();
-            Log.e("alcaldia",nombre_alcaldia);
-            Log.e("colonia",nombre_colonia);
-            Log.e("cantidad",direccion_fragmentada.length+"");
-            coordenadas =coord;
+            calle = direccion_fragmentada[0].toUpperCase();
+            nombre_colonia = direccion_fragmentada[1].toUpperCase().trim();
+            nombre_alcaldia = direccion_fragmentada[2].toUpperCase().trim();
+            cp = direccion_fragmentada[3].toUpperCase();
+            ciudad = direccion_fragmentada[4].toUpperCase();
+            pais = direccion_fragmentada[5].toUpperCase();
+            Log.e("alcaldia", nombre_alcaldia);
+            Log.e("colonia", nombre_colonia);
+            Log.e("cantidad", direccion_fragmentada.length + "");
+            coordenadas = coord;
             puntoPartida.setText(direccion);
-            //Toast.makeText(getApplicationContext(),"direccion: "+direccion,Toast.LENGTH_LONG).show();
-            //Toast.makeText(getApplicationContext(),"lat: "+latitud+"long:"+longitud,Toast.LENGTH_LONG).show();
+
+            // Guardar ubicación en preferencias
             Context context = this;
             SharedPreferences preferencias = getSharedPreferences("Usuario", context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferencias.edit();
@@ -2441,12 +2557,9 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
             editor.putString("longitud", String.valueOf(longitud));
             editor.putString("direccion", "" + direccion);
             editor.apply();
-            if (latitud!=0){
-                //segundoPlano = new SegundoPlano();
-                //segundoPlano.execute();
-            }
         }
     }
+
     public String darDireccion(Context ctx, double darLat, double darLong) {
         String fullDireccion = null;
         try {
@@ -2468,26 +2581,18 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         return Bitmap.createScaledBitmap(imageBitmap, width, height, false);
     }
     private void agregarMarcadorUbicacion(double latitud, double longitud) {
-
         latLong = new LatLng(latitud, longitud);
         if (marker != null) {
-                marker.remove();
-                marker = mMap.addMarker(new MarkerOptions()
-                    .position(latLong)
-                    .icon(BitmapDescriptorFactory.fromBitmap(resizeBitmap("fondo", 70, 70))));
-            CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(latLong, 18);
-            mMap.moveCamera(miUbicacion);
+            marker.remove();
         }
-        else{
-            marker = mMap.addMarker(new MarkerOptions()
-                    .position(latLong)
-                    .icon(BitmapDescriptorFactory.fromBitmap(resizeBitmap("fondo", 70, 70))));
-            CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(latLong, 18);
-            mMap.animateCamera(miUbicacion);
-        }
-
+        marker = mMap.addMarker(new MarkerOptions()
+                .position(latLong)
+                .icon(BitmapDescriptorFactory.fromBitmap(resizeBitmap("fondo", 70, 70))));
+        CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(latLong, 18);
+        mMap.animateCamera(miUbicacion);
         marker.setZIndex(0);
     }
+
     LocationListener locationListener = new LocationListener() {
         //Cuando la ubicación cambia
         @Override
@@ -2579,7 +2684,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                                 String strColoniacatastral=jsonObject.getString("colonia_catastral");
                                 String strRegion=jsonObject.getString("region");
                                 String strValor=jsonObject.getString("valor");
-                                Double multi=Double.parseDouble(strValor);
+
                                 Log.e("revisa",""+strValor);
                                 valorTotalTerreno=strValor;
                                 valTierra.setText("$"+strValor);
@@ -2824,5 +2929,38 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
             sched.ponerImagen("spi_"+i);
             listaAcabadosBanos.add(sched);
         }
+    }
+
+    private void drawPolygon() {
+        if (polygon != null) {
+            polygon.remove();
+        }
+
+        if (polygonPoints.size() > 0) {
+            PolygonOptions polygonOptions = new PolygonOptions().addAll(polygonPoints).clickable(true)
+                    .strokeColor(0xFF0000FF)
+                    .fillColor(0x7F00FF00);
+            polygon = mMap.addPolygon(polygonOptions);
+
+            // Eliminar todos los marcadores antes de añadir nuevos
+            for (Marker marker : markers) {
+                marker.remove();
+            }
+            markers.clear();
+
+            // Añadir marcadores en los puntos del polígono para hacerlos más visibles
+            for (LatLng point : polygonPoints) {
+                markers.add(mMap.addMarker(new MarkerOptions().position(point).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))));
+            }
+        }
+    }
+    // Método para calcular el área de un polígono
+    private double calculateArea(Polygon polygon) {
+        List<LatLng> points = polygon.getPoints();
+        return SphericalUtil.computeArea(points);
+    }
+    private void  check_box_are(){
+        check_dibujar_poligono.setChecked(false);
+        check_numero_area.setChecked(false);
     }
 }
