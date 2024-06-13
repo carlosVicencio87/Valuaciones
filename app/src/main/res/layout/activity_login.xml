@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/fondo_registro"
+    android:background="@color/blanco"
     tools:context=".Login">
 
     <ImageView
@@ -13,7 +13,7 @@
         android:layout_height="170dp"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
-        android:background="@drawable/fondo"/>
+        android:background="@drawable/logo_valuaciones"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="250dp"
@@ -42,7 +42,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:src="@drawable/icono_usuario"/>
+            android:src="@drawable/usuario"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -69,7 +69,7 @@
             android:id="@+id/icoPass"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/icono_pass"
+            android:background="@drawable/password"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"

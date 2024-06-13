@@ -45,7 +45,8 @@ public class Login extends AppCompatActivity {
     private SharedPreferences datosUsuario;
     private SharedPreferences.Editor editor;
     private boolean correo_exitoso,contrasena_exitoso;
-    private JSONObject json_datos_usuario;
+    private  JSONArray json_datos_usuario;
+
     private  String strInicio,strUsuario;
     private ExecutorService executorService;
 
@@ -60,10 +61,6 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         SERVIDOR_CONTROLADOR = new Servidor().local;
-        datosUsuario = getSharedPreferences("Usuario",this.MODE_PRIVATE);
-        editor=datosUsuario.edit();
-
-
         correo=findViewById(R.id.correo);
         contrasena =findViewById(R.id.contrasena);
         ingresar= findViewById(R.id.ingresar);
@@ -97,8 +94,7 @@ public class Login extends AppCompatActivity {
                                 public void run() {
                                     hacerPeticion();
                                     Log.e("tarea","y esto igual");
-                                    Intent intent = new Intent(Login.this,Mapa.class);
-                                    startActivity(intent);
+
                                 }
                             });
 
@@ -181,43 +177,24 @@ public class Login extends AppCompatActivity {
                         {
                             try {
 
-                                //json_datos_usuario=new JSONArray(response);
-                                json_datos_usuario=new JSONObject(response);
-                                String strId = json_datos_usuario.getString("id");
-                                String strNombre= json_datos_usuario.getString("nombre");
-                                String strApellido = json_datos_usuario.getString("apellido");
-                                String strTelefono = json_datos_usuario.getString("telefono");
-                                String strCorreo = json_datos_usuario.getString("email");
-                                String strContra=json_datos_usuario.getString("password");
-                                String strActivo=json_datos_usuario.getString("activo");
-                                String strFirecode=json_datos_usuario.getString("fireCode");
-                                String strLatitud=json_datos_usuario.getString("lat");
-                                String strLongitud=json_datos_usuario.getString("lng");
-                                String stridSesion=json_datos_usuario.getString("id_sesion");
-                                String strFechaRegistro=json_datos_usuario.getString("fecha_registro");
-                                Log.e("id_sesion",""+stridSesion);
+
+
+                                json_datos_usuario=new JSONArray(response);
                                 Log.e("lala",""+json_datos_usuario);
-                                editor.putString("id",strId);
-                                editor.putString("nombre",strNombre);
-                                editor.putString("apellido",strApellido);
-                                editor.putString("telefono",strTelefono);
-                                editor.putString("email",strCorreo);
-                                editor.putString("password",strContra);
-                                editor.putString("activo",strActivo);
-                                editor.putString("fireCode",strFirecode);
-                                editor.putString("lat",strLatitud);
-                                editor.putString("lng",strLongitud);
-                                editor.putString("id_sesion",stridSesion);
-                                editor.putString("fecha_registro",strFechaRegistro);
-                                editor.apply();
-                                datosUsuario.getString("usuario","no hay");
-                                String prefedatosus=datosUsuario.getString("idSesion","no hay");
-                                Log.e("comprobacion",""+prefedatosus);
+                                for (int i=0;i<json_datos_usuario.length();i++){
+                                    JSONObject jsonObject = json_datos_usuario.getJSONObject(i);
+                                    //Log.e("nombreMovies", String.valueOf(jsonObject));
+                                    String strId = jsonObject.getString("id");
+                                    String strId_sesion=jsonObject.getString("id_sesion");
+                                    Log.e("idsesion",strId_sesion);
+                                    editor.putString("id",strId);
+                                    editor.putString("id_sesion",strId_sesion);
+                                    editor.apply();
+                                    Log.e("idsesion",strId_sesion);
+                                    Intent intent = new Intent(Login.this,Mapa.class);
+                                    startActivity(intent);
 
-                                // Log.e("3",strActivo);
-                                Log.e("4",strFirecode);
-                                Log.e("5",stridSesion);
-
+                                }
                             }
                             catch (JSONException e) {
                                 Log.e("errorRespuesta", String.valueOf(e));

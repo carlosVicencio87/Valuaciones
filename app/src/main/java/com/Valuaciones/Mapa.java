@@ -1,5 +1,6 @@
 package com.Valuaciones;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -22,6 +23,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -31,6 +33,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -65,9 +68,7 @@ import java.util.concurrent.Executors;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.maps.android.SphericalUtil;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Polygon;
-import java.util.List;
+
 public class Mapa extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -78,7 +79,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
             valor_unitario,valor_dinero_m2,instalaciones,años_construccion_final,valor_condepreciacion,valor_real,ingresar_val_form,borrar_linea,msj_mapa,aceptar_poligono;
     private EditText area,areaConstruccion,niveles,años_construccion;
     private ImageView area_aprobada,cambiar_area,cambiar_area_construccion,area_construccion_aprobada,cambiar_nivel,niveles_aprobados,cambiar_tiempo,cambiar_tiempo_final;
-    private String direccion;
+    private String direccion,pagina_actual_str;
     private Button sigCalculo,sig_Calculo,sigPag,calcularPrecioConstr,calcularIsai;
     private String calle,numeroAlcaldia, nombre_colonia,nombre_alcaldia,colonia_catastral,valor,cp,ciudad,pais;
     private Double areafinal,areaConsFinal,valorConstruccion,valor_muros,valor_materiales,valorMateriales,valor_pisos,valorPisos,
@@ -88,7 +89,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
             ,valor_depreciacion, valor_de_depreciacion,valor_con_depreciacion;
     private LatLng coord,coordenadas,latLong;
     private Marker marker;
-    private LinearLayout cajaEditararea,cajaArea,cajaAreaCons,cajaCons,cajaEditNiveles,cajaNiveles,caja_años,
+    private LinearLayout cajaEditararea,cajaAreaCons,cajaCons,cajaEditNiveles,cajaNiveles,caja_años,
             caja_años_final,caja_valor_depreciacion,caja_valor_real,div_poligono;
     private ConstraintLayout mapaid;
     private ScrollView valor_construccion,val_tierra,valor_acabados,valor_puntos,valor_m2;
@@ -135,6 +136,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     private List<Marker> markers = new ArrayList<>();
 
     double area_poligono;
+    private int check_area=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,9 +147,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         mapFragment.getMapAsync(this);
         val_total_tierra=findViewById(R.id.val_total_tierra);
         area_total=findViewById(R.id.area_total);
-        cajaArea=findViewById(R.id.cajaArea);
         cambiar_area=findViewById(R.id.cambiar_area);
-        area_aprobada=findViewById(R.id.area_aprobada);
         area=findViewById(R.id.area);
         puntoPartida=findViewById(R.id.puntoPartida);
         valTierra=findViewById(R.id.valTierra);
@@ -220,6 +220,8 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         setListaVentaneria();
         setListaAcabadosRecubrimiento();
         setListaAcabadosBanos();
+        pagina_actual_str="pagina_1";
+
         final int permisoLocacion = ContextCompat.checkSelfPermission(Mapa.this, Manifest.permission.ACCESS_FINE_LOCATION);
 
         if (permisoLocacion!= PackageManager.PERMISSION_GRANTED) {
@@ -227,16 +229,25 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
 
             Log.e("paso","paso");
         }
+
         sharedPreferences=getSharedPreferences("datos_catastrales",this.MODE_PRIVATE);
         editor=sharedPreferences.edit();
         executorService= Executors.newSingleThreadExecutor();
-
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                handleBackPressed();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
         ingresar_val_form.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mapaid.setVisibility(View.GONE);
                 val_tierra.setVisibility(View.VISIBLE);
                 valTierra.setVisibility(View.VISIBLE);
+                pagina_actual_str="pagina_2";
+
                 executorService.execute(() -> {
                     buscar_precio();
                     Log.e("tarea", "y esto igual");
@@ -245,31 +256,44 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         });
         cambiar_area.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                cajaEditararea.setVisibility(view.GONE);
-                cajaArea.setVisibility(View.VISIBLE);
-                areafinal= Double.parseDouble(area.getText().toString());
-                Log.e("putotopo",areafinal+"");
-                area_total.setText(String.valueOf(areafinal));
-                Log.e("estoestabien",area_total.getText().toString()+"");
-                Log.e("res",""+area.getText().toString());
-                Log.e("12",""+valorTotalTerreno);
-                Double valor_1=Double.parseDouble(area.getText().toString());
-                valorTotalTerreno = valorTotalTerreno.replace(",", "");
-                // Convertir el String a Double
-                Double valor_2 = Double.parseDouble(valorTotalTerreno);
-                Double total = valor_1*valor_2;
-                Log.e("total_area",total+"");
-                val_total_tierra.setText("$"+total);
+            public void onClick(View v) {
+                if(check_area ==0){
+                    areafinal= Double.valueOf(area.getText().toString());
+                    if (!areafinal.equals("")) {
+                        area_total.setText(String.valueOf(areafinal));
+                        Double valor_1=Double.parseDouble(area.getText().toString());
+                        valorTotalTerreno = valorTotalTerreno.replace(",", "");
+                        // Convertir el String a Double
+                        Double valor_2 = Double.parseDouble(valorTotalTerreno);
+                        Double total = valor_1*valor_2;
+                        Log.e("total_area",total+"");
+                        val_total_tierra.setText("$"+total);
+                        area_total.setVisibility(View.VISIBLE);
+                        area.setVisibility(View.GONE);
+
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(cambiar_area.getWindowToken(), 0);
+                        cambiar_area.requestFocus();
+                /*        InputMethodManager imm2 = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm2.showSoftInput(cambiar_area, InputMethodManager.SHOW_IMPLICIT);*/
+                        check_area =1;
+                        cambiar_area.setImageResource(R.drawable.lock);
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), "El area del terreno es neccesario.", Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    area_total.setVisibility(View.GONE);
+                    area.setVisibility(View.VISIBLE);
+                    check_area =0;
+                    cambiar_area.setImageResource(R.drawable.unlock);
+                    area.requestFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(area, InputMethodManager.SHOW_IMPLICIT);
+                }
             }
         });
-        area_aprobada.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cajaAreaCons.setVisibility(view.GONE);
-                cajaCons.setVisibility(View.VISIBLE);
-            }
-        });
+
         sigCalculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -347,6 +371,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 valTierra.setVisibility(View.GONE);
                 ingresar_val_form.setVisibility(View.GONE);
                 div_poligono.setVisibility(View.VISIBLE);
+                pagina_actual_str="pagina_3";
                 msj_mapa.setText("El calculo del area del poligno es un aproximado proporcionado por google maps");
                 // Cambiar el listener de clic en el mapa para el dibujo del polígono
                 mMap.setOnMapClickListener(drawPolygonClickListener);
@@ -370,8 +395,11 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 valTierra.setVisibility(View.VISIBLE);
                 ingresar_val_form.setVisibility(View.VISIBLE);
                 div_poligono.setVisibility(View.GONE);
-                cajaArea.setVisibility(View.VISIBLE);
-                cajaEditararea.setVisibility(View.GONE);
+                area_total.setVisibility(View.VISIBLE);
+                check_area =1;
+                area.setVisibility(View.GONE);
+                cambiar_area.setImageResource(R.drawable.lock);
+
                 area_total.setText(area_poligono+ "m2");
             }
         });
@@ -381,9 +409,13 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 check_box_are();
                 check_numero_area.setChecked(true);
                 area_total.setText("");
-                cajaArea.setVisibility(View.GONE);
 
-                cajaEditararea.setVisibility(View.VISIBLE);
+                area_total.setVisibility(View.GONE);
+                area.setVisibility(View.VISIBLE);
+
+                check_area =0;
+
+
             }
         });
         borrar_linea.setOnClickListener(new View.OnClickListener() {
@@ -416,7 +448,7 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 }
                 if (position>0)
                 {
-                  seleccion_estructura= String.valueOf(1);
+                  seleccion_estructura= String.valueOf("1");
                     Log.e("val1",""+seleccion_estructura);
                      valor_estructura= Double.valueOf(seleccion_estructura);
                     valor_estruc=valor_estructura*valorConstruccion;
@@ -2963,4 +2995,80 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
         check_dibujar_poligono.setChecked(false);
         check_numero_area.setChecked(false);
     }
+    private void handleBackPressed() {
+        switch (pagina_actual_str) {
+            case "pagina_1":
+
+                break;
+            case "pagina_2":
+                mapaid.setVisibility(View.VISIBLE);
+                val_tierra.setVisibility(View.GONE);
+                valTierra.setVisibility(View.GONE);
+                pagina_actual_str = "pagina_1";
+                break;
+            case "pagina_3":
+
+                mapaid.setVisibility(View.GONE);
+                val_tierra.setVisibility(View.VISIBLE);
+                valTierra.setVisibility(View.VISIBLE);
+                ingresar_val_form.setVisibility(View.VISIBLE);
+                div_poligono.setVisibility(View.GONE);
+                pagina_actual_str="pagina_2";
+                msj_mapa.setText("Puedes cambiar tu ubicacion dando click en el mapa");
+                // Cambiar el listener de clic en el mapa para el dibujo del polígono
+                mMap.setOnMapClickListener(locationClickListener);
+                break;
+     /*           case "pagina_4":
+                    pagina_actual_str="pagina_4";
+                    cajaAreaCons.setVisibility(View.VISIBLE);
+                    cajaCons.setVisibility(View.GONE);
+                    pagina_actual_str="pagina_2";
+
+                    break;*/
+            /*case "vista_previa_basculas":
+                div_formulario_bascula.setVisibility(View.VISIBLE);
+                div_bascula_vista_pr.setVisibility(View.GONE);
+                pagina_actual_str = "pagina_formulario_basculas";
+                break;
+            case "pagina_otras_basculas":
+                pagina_actual_str = "formulario_almacen_basculas";
+                div_formulario_bascula.setVisibility(View.GONE);
+                div_almacen_basculas_agregadas.setVisibility(View.VISIBLE);
+                break;
+            case "detalle_basculas":
+                div_almacen_basculas_agregadas.setVisibility(View.VISIBLE);
+                caja_info_bascula.setVisibility(View.GONE);
+                pagina_actual_str = "formulario_almacen_basculas";
+                break;
+            case "formulario_almacen_basculas":
+                // Añade tu lógica aquí
+                break;
+            case "caja_equipo_basculas":
+                caja_info_pesas.setVisibility(View.GONE);
+                div_lista_acta_dictamen_final.setVisibility(View.VISIBLE);
+                pagina_actual_str = "recycler_acta_dictamen_final";
+                break;
+            case "caja_firmas":
+                div_firmas_dictamen.setVisibility(View.GONE);
+                div_lista_acta_dictamen_final.setVisibility(View.VISIBLE);
+                pagina_actual_str = "recycler_acta_dictamen_final";
+                break;
+            case "dictamenes_view":
+                caja_info_pesas.setVisibility(View.VISIBLE);
+                caja_dictamen_final.setVisibility(View.GONE);
+                pagina_actual_str = "caja_equipo_basculas";
+                break;
+            case "caja_firma_cliente":
+                div_formulario_principal.setVisibility(View.VISIBLE);
+                div_firma_cliente.setVisibility(View.GONE);
+                pagina_actual_str = "formulario_principal";
+                break;
+            case "pagina_camara":
+                div_preview_camara.setVisibility(View.GONE);
+                caja_dictamen_final.setVisibility(View.VISIBLE);
+                pagina_actual_str = "dictamenes_view";
+                break;*/
+        }
+    }
+
 }

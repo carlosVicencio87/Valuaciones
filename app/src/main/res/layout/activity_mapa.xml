@@ -155,8 +155,7 @@
                     android:layout_margin="30dp"
                     android:textColor="@color/negro"
                     android:gravity="center"
-                    android:layout_marginBottom="10dp"
-                    />
+                    android:layout_marginBottom="10dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -203,7 +202,7 @@
                 android:orientation="horizontal"
                 android:background="@drawable/campo"
                 android:gravity="center"
-                android:visibility="gone">
+                android:visibility="visible">
                 <EditText
                     android:id="@+id/area"
                     android:layout_width="200dp"
@@ -212,25 +211,9 @@
                     android:textColor="@color/negro"
                     android:inputType="numberDecimal"
                     android:textSize="25dp"
-                    android:gravity="center">
-                </EditText>
-                <ImageView
-                    android:id="@+id/cambiar_area"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:background="@drawable/palomita">
-                </ImageView>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/cajaArea"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:orientation="horizontal"
-                android:background="@drawable/campo"
-                android:gravity="center"
-                android:visibility="visible"
-                >
+                    android:gravity="center"/>
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/area_total"
                     android:layout_width="200dp"
                     android:layout_height="70dp"
@@ -238,11 +221,10 @@
                     android:textColor="@color/negro"
                     android:hint="@string/texto9"
                     android:textSize="20dp"
-                    android:gravity="center"
-                    >
-                </TextView>
+                    android:gravity="center" />
+
                 <ImageView
-                    android:id="@+id/area_aprobada"
+                    android:id="@+id/cambiar_area"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:background="@drawable/palomita">
@@ -303,7 +285,7 @@
         android:layout_height="match_parent"
         android:id="@+id/valor_construccion"
         android:background="@drawable/fondo_registro"
-        android:visibility="visible">
+        android:visibility="gone">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
