@@ -8,7 +8,7 @@
     <string name="texto6">Calcular Valor de las instalaciones</string>
     <string name="texto7">Siguiente</string>
     <string name="texto8">Valor de la tierra</string>
-    <string name="texto9">Area</string>
+    <string name="texto9">Area total del terreno</string>
     <string name="texto10">valor total del terreno</string>
     <string name="texto11">Area de construccion</string>
     <string name="texto12">Tipo de Estructura</string>
@@ -18,11 +18,11 @@
     <string name="texto16">Puntos obtenidos en la matriz</string>
     <string name="texto17">Cantidad de niveles en la construccion</string>
     <string name="texto18">Clase de construccion</string>
-    <string name="texto19">Valor Unitario por m2</string>
+    <string name="texto19">Valor Unitario por m3</string>
     <string name="texto20">Calcular $ construccion</string>
     <string name="texto21">precio $ construccion</string>
     <string name="texto22">precio $ instalaciones</string>
-    <string name="texto23">Tiempo de la construccion (años)</string>
+    <string name="texto23">Tiempo de la construccion o tiempo desde la ultima remodelacion</string>
     <string name="texto24">Valor de depreciacion</string>
     <string name="texto25">Calcular Isai </string>
     <string name="texto26">Acabados muros</string>
@@ -33,8 +33,8 @@
     <string name="texto31">Acabados Baños</string>
     <string name="texto32">límite inferior del rango </string>
     <string name="texto33">Rango</string>
-    <string name="texto34">factor de aplicación sobre el excedente del límite inferior</string>
-    <string name="texto35">cuota fija </string>
+    <string name="texto34">Porcentaje para Aplicarse sobre el Excedente del Límite Inferior</string>
+    <string name="texto35">Cuota Fija</string>
     <string name="texto36">Valor ISAI $</string>
     <string name="title_activity_mapa">Map</string>
 

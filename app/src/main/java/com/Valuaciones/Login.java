@@ -60,7 +60,7 @@ public class Login extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
 
-        SERVIDOR_CONTROLADOR = new Servidor().local;
+        SERVIDOR_CONTROLADOR = new Servidor().servidor;
         correo=findViewById(R.id.correo);
         contrasena =findViewById(R.id.contrasena);
         ingresar= findViewById(R.id.ingresar);
@@ -204,7 +204,7 @@ public class Login extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e( "error", "error: " +error.getMessage());
+                Log.e( "error", "volley: " +error.getMessage());
             }
         }){
             @Override

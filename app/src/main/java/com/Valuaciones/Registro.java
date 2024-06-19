@@ -39,9 +39,9 @@ public class Registro extends AppCompatActivity{
 
 
     private ExecutorService executorService;
-    private TextView fecha, registrar,mensaje,mensajeNombre,mensajeApellido,mensajetelefono,mensajeconfirmartel,telefonosRegistrado,mensajepin,mensajeEmail,mensajeteligual,mensajeConPin;
-    private EditText nombre,apellidos,telefono,confirmarTel,pin,confirmarPin,email;
-    private String valnom,valapellidos,valtel,valConfirmar,valpin,valconP,valemail,valfecha, nombreFinal,apellidosFinal,telefonoFinal,confirmartelFinal,conPinFinal,pinFinal,emailfinal,nombreTmp,apellidostemp,confirmarteltemp,telefonotemp,pintemp,conPintemp;
+    private TextView fecha, registrar,mensaje;
+    private EditText nombre,apellidos,telefono,pin,confirmarPin,email;
+    private String valnom,valapellidos,valtel,valpin,valconP,valemail, nombreFinal,apellidosFinal,telefonoFinal,conPinFinal,pinFinal,emailfinal,nombreTmp,apellidostemp,telefonotemp,pintemp,conPintemp;
     private boolean tel10,pin4,nombreExitoso,apellidoExitoso,telefonoExitoso,confirmartelExitoso,telefonoExistente,pinExitoso,comPinExitoso,emailExitoso;
     private static String SERVIDOR_CONTROLADOR;
 
@@ -55,27 +55,18 @@ public class Registro extends AppCompatActivity{
         getSupportActionBar().hide();
         setContentView(R.layout.activity_registro);
 
-        SERVIDOR_CONTROLADOR = new Servidor().local;
+        SERVIDOR_CONTROLADOR = new Servidor().servidor;
 
         nombre = findViewById(R.id.nombre);
         apellidos = findViewById(R.id.apellidos);
         telefono = findViewById(R.id.telefono);
-        confirmarTel = findViewById(R.id.confirmarTel);
         pin = findViewById(R.id.pin);
         confirmarPin = findViewById(R.id.confirmarPin);
         email =findViewById(R.id.email);
         registrar = findViewById(R.id.registrar);
         mensaje = findViewById(R.id.mensaje);
         executorService= Executors.newSingleThreadExecutor();
-        mensajeNombre=findViewById(R.id.mensajeNombre);
-        mensajeApellido=findViewById(R.id.mensajeApellido);
-        mensajetelefono=findViewById(R.id.mensajetelefono);
-        mensajepin=findViewById(R.id.mensajepin);
-        mensajeconfirmartel=findViewById(R.id.mensajeconfirmartel);
-        telefonosRegistrado=findViewById(R.id.telefonosRegistrado);
-        mensajeConPin=findViewById(R.id.mensajeConPin);
-        mensajeteligual=findViewById(R.id.mensajeteligual);
-        mensajeEmail=findViewById(R.id.mensajeEmail);
+
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,14 +94,12 @@ public class Registro extends AppCompatActivity{
                 valnom = nombre.getText().toString();
                 valapellidos = apellidos.getText().toString();
                 valtel = telefono.getText().toString();
-                valConfirmar = confirmarTel.getText().toString();
                 valpin = pin.getText().toString();
                 valconP = confirmarPin.getText().toString();
                 valemail = email.getText().toString();
                 if(!valnom.trim().equals("")){
                     if (!valapellidos.trim().equals("")){
                         if(!valtel.trim().equals("")){
-                            if(!valConfirmar.trim().equals("")){
                                 if(!valpin.trim().equals("")){
                                     if(!valconP.trim().equals("")){
                                         if(!valemail.trim().equals("")){
@@ -120,15 +109,13 @@ public class Registro extends AppCompatActivity{
                                                         if(pinExitoso=true){
                                                             if(emailExitoso=true){
 
-
+                                                                    mensaje.setText("Registrado");
                                                                     mensaje.setVisibility(View.VISIBLE);
-                                                                    telefonosRegistrado.setVisibility(View.GONE);
                                                                     registrar.setVisibility(View.GONE);
                                                                     executorService.execute(new Runnable() {
                                                                         @Override
                                                                         public void run() {
                                                                             hacerPeticion();
-                                                                            Log.e("vnombre",""+valnom+valapellidos+valtel+valpin+valemail);
                                                                         }
                                                                     });
 
@@ -150,8 +137,7 @@ public class Registro extends AppCompatActivity{
                                 }
                                 else{Toast.makeText(getApplicationContext(),"Una contrasena es necesaria",Toast.LENGTH_LONG).show(); }
                             }
-                            else {Toast.makeText(getApplicationContext(),"Confirmar tu telefono es necesario",Toast.LENGTH_LONG).show();}
-                        }
+
                         else{ Toast.makeText(getApplicationContext(),"El telefono es necesario",Toast.LENGTH_LONG).show();}
                     }
                     else{Toast.makeText(getApplicationContext(),"El apellido es necesario",Toast.LENGTH_LONG).show(); }
@@ -176,14 +162,14 @@ public class Registro extends AppCompatActivity{
                         if (verificarReg.equals(""))
                         {
                             nombreExitoso=true;
-                            mensajeNombre.setVisibility(View.GONE);
+                            mensaje.setVisibility(View.GONE);
                         }
 
                         else
                         {
 
-                            mensajeNombre.setText("El nombre solo puede  letras");
-                            mensajeNombre.setVisibility(View.VISIBLE);
+                            mensaje.setText("El nombre solo puede contener letras");
+                            mensaje.setVisibility(View.VISIBLE);
                         }
                     }
                 }
@@ -208,14 +194,14 @@ public class Registro extends AppCompatActivity{
                         if (verificarReg.equals(""))
                         {
                             apellidoExitoso=true;
-                            mensajeApellido.setVisibility(View.GONE);
+                            mensaje.setVisibility(View.GONE);
                         }
 
                         else
                         {
 
-                            mensajeApellido.setText("Los apellidos solo pueden tener   letras");
-                            mensajeApellido.setVisibility(View.VISIBLE);
+                            mensaje.setText("Los apellidos solo pueden tener   letras");
+                            mensaje.setVisibility(View.VISIBLE);
                         }
                     }
                 }
@@ -240,72 +226,19 @@ public class Registro extends AppCompatActivity{
                         if (verificarReg.equals(""))
                         {
                             telefonoExitoso=true;
-                            mensajetelefono.setVisibility(View.GONE);
+                            mensaje.setVisibility(View.GONE);
                         }
 
                         else
                         {
 
-                            mensajetelefono.setText("El telefono solo pueden tener numeros");
-                            mensajetelefono.setVisibility(View.VISIBLE);
+                            mensaje.setText("El telefono solo pueden tener numeros");
+                            mensaje.setVisibility(View.VISIBLE);
                         }
                     }
                 }
                 else{
-                    //Toast.makeText(getApplicationContext(), "NOMBRE obtuvo FOCO", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-        confirmarTel.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean tieneFoco) {
 
-                if(!tieneFoco)
-                {
-                    //Toast.makeText(getApplicationContext(), "NOMBRE PERDIO FOCO", Toast.LENGTH_LONG).show();
-                    confirmartelFinal=confirmarTel.getText().toString().trim().toLowerCase();
-                    if (!confirmartelFinal.equals("")&&confirmartelFinal!=null)
-                    {
-                        String regexUsuario = "[0-9]+";
-                        confirmarteltemp=confirmartelFinal;
-                        String verificarReg= confirmarteltemp.trim().replaceAll(regexUsuario,"");
-                        if (verificarReg.equals(""))
-                        {
-                            confirmartelExitoso=true;
-
-                            valtel = telefono.getText().toString().trim();
-                            valConfirmar = confirmarTel.getText().toString().trim();
-
-                            Log.e("valores",valtel+"   "+valConfirmar);
-                            if(valtel.equals(valConfirmar)){
-                                mensajeteligual.setVisibility(View.GONE);
-                                Log.e("paso","paso");
-                                /*executorService.execute(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                       buscar_tel();
-                                    }
-                                });*/
-
-
-                            }
-                            else{
-                                mensajeteligual.setText("Los telefonos no coinciden");
-                                mensajeteligual.setVisibility(View.VISIBLE);
-
-                            }
-                        }
-
-                        else
-                        {
-
-                            mensajeconfirmartel.setText("El telefono solo pueden tener numeros");
-                            mensajeconfirmartel.setVisibility(View.VISIBLE);
-                        }
-                    }
-                }
-                else{
-                    //Toast.makeText(getApplicationContext(), "NOMBRE obtuvo FOCO", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -325,14 +258,14 @@ public class Registro extends AppCompatActivity{
                         if (verificarReg.equals(""))
                         {
                             pinExitoso=true;
-                            mensajepin.setVisibility(View.GONE);
+                            mensaje.setVisibility(View.GONE);
                         }
 
                         else
                         {
 
-                            mensajepin.setText("El telefono solo pueden tener numeros");
-                            mensajepin.setVisibility(View.VISIBLE);
+                            mensaje.setText("El telefono solo pueden tener numeros");
+                            mensaje.setVisibility(View.VISIBLE);
                         }
                     }
                 }
@@ -363,20 +296,20 @@ public class Registro extends AppCompatActivity{
 
                             Log.e("valores",valpin+"   "+valconP);
                             if(valpin.equals(valconP)){
-                                mensajeConPin.setVisibility(View.GONE);
+                                mensaje.setVisibility(View.GONE);
                                 Log.e("paso","paso");
                             }
                             else{
-                                mensajeConPin.setText("Los PIN no coinciden");
-                                mensajeConPin.setVisibility(View.VISIBLE);
+                                mensaje.setText("Los PIN no coinciden");
+                                mensaje.setVisibility(View.VISIBLE);
                             }
                         }
 
                         else
                         {
 
-                            mensajeConPin.setText("El PIN solo pueden tener numeros");
-                            mensajeConPin.setVisibility(View.VISIBLE);
+                            mensaje.setText("El PIN solo pueden tener numeros");
+                            mensaje.setVisibility(View.VISIBLE);
                         }
                     }
                 }
@@ -402,13 +335,13 @@ public class Registro extends AppCompatActivity{
                         if(matcher.matches()==true){
 
                             emailExitoso=true;
-                            mensajeEmail.setVisibility(View.GONE);
+                            mensaje.setVisibility(View.GONE);
                         }
                     }
                 }
                 else{
-                    mensajeEmail.setText("Ingrese una direccion de correo valido");
-                    mensajeEmail.setVisibility(View.VISIBLE);
+                    mensaje.setText("Ingrese una direccion de correo valido");
+                    mensaje.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -423,8 +356,8 @@ public class Registro extends AppCompatActivity{
                     public void onResponse(String response) {
                         Log.e("respuesta4:",response + "sal");
                         if(response.equals("success")){
-                            Intent intent = new Intent(Registro.this,Login.class);
-                            startActivity(intent);
+                            mensaje.setText("El registro del usuario a sido exitoso");
+                            mensaje.setVisibility(View.VISIBLE);
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -461,15 +394,15 @@ public class Registro extends AppCompatActivity{
                         Log.e("respuesta5:",response + "EL TELEFONO YA EXISTE");
                         if(response.equals("existe")){
                             telefonoExistente=true;
-                            telefonosRegistrado.setVisibility(View.VISIBLE);
-                            telefonosRegistrado.setText("El telefono ya existe");
+                            mensaje.setVisibility(View.VISIBLE);
+                            mensaje.setText("El telefono ya existe");
 
 
                         }
                         else{
 
                             telefonoExistente=false;
-                            telefonosRegistrado.setVisibility(View.GONE);
+                            mensaje.setVisibility(View.GONE);
 
                         }
                     }
